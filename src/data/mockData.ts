@@ -1,0 +1,251 @@
+import { Project, ServiceItem, Article, ClientLogo, TeamMember } from '../types';
+
+export const CLIENT_LOGOS: ClientLogo[] = [
+  { id: 'aust', name: 'AUST', category: 'Biotech & Robotics' },
+  { id: 'bnp', name: 'BNP PARIBAS', category: 'Global Banking' },
+  { id: 'rockfi', name: 'RockFi', category: 'Fintech Private Wealth' },
+  { id: 'ircam', name: 'ircam amplify', category: 'Acoustic AI & Sound Tech' },
+  { id: 'mistral', name: 'MISTRAL', category: 'Frontier AI' },
+  { id: 'alan', name: 'alan', category: 'Health Insurance' },
+  { id: 'spendesk', name: 'Spendesk', category: 'Spend Management' },
+  { id: 'qonto', name: 'Qonto', category: 'Business Finance' },
+];
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'rockfi-wealth',
+    title: 'Democratizing private wealth management',
+    client: 'RockFi',
+    year: '2024',
+    category: 'Fintech & WealthTech',
+    tags: ['Brand Strategy', 'Visual Identity', 'Web App', 'Design System'],
+    deliverables: ['Full Rebrand', 'High-Converting Web Platform', 'Client Portal UI/UX', 'Pitch Deck'],
+    description: 'RockFi is reinventing wealth management for next-gen entrepreneurs and leaders across Europe.',
+    challenge: 'Traditional private banking is opaque and outdated. RockFi needed a premium, trustworthy visual presence that resonates with modern tech founders while preserving institutional credibility.',
+    solution: 'Crafted a sleek architectural aesthetic pairing sharp Swiss typography with deep emerald tones, gold foil accents, and high-frequency real-time portfolio dashboards.',
+    results: [
+      { label: 'Capital Raised', value: '€18M Series A' },
+      { label: 'Conversion Lift', value: '+142%' },
+      { label: 'Client AUM Growth', value: '3.4x in 6 mo' },
+    ],
+    accentColor: '#103728',
+    heroImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80',
+    ],
+    featuredUrl: 'https://rockfi.fr',
+  },
+  {
+    id: 'ircam-amplify',
+    title: 'Sound experiences powered by deep acoustic science',
+    client: 'ircam amplify',
+    year: '2024',
+    category: 'Spatial Audio & AI',
+    tags: ['Identity', '3D Sound Visualizer', 'Motion Design', 'Web Experience'],
+    deliverables: ['Identity System', 'Interactive Sound Engine', 'Product Landing Page'],
+    description: 'A spin-off of the world-renowned IRCAM music institute, building AI-driven spatial audio engines for spatial computing and automotive.',
+    challenge: 'Translating intangible acoustic engineering and psychoacoustic research into an intuitive, tactile digital visual universe.',
+    solution: 'Designed dynamic waveform physics shaders and generative sound typography that reacts to ambient mic frequencies in real-time.',
+    results: [
+      { label: 'FWA of the Day', value: 'Award Winner' },
+      { label: 'Avg Session Time', value: '4m 18s' },
+      { label: 'Enterprise Inquiries', value: '+210%' },
+    ],
+    accentColor: '#1A1829',
+    heroImage: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1400&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80',
+    ],
+  },
+  {
+    id: 'aust-robotics',
+    title: 'Next-generation surgical robotics platform',
+    client: 'AUST Dynamics',
+    year: '2024',
+    category: 'Healthtech & Hardware',
+    tags: ['3D Visualization', 'Pitch Deck', 'Web Architecture', 'Investor Kit'],
+    deliverables: ['Fundraising Narrative Deck', 'Interactive 3D Hardware Explorer', 'Brand Guidelines'],
+    description: 'Sub-millimeter micro-robotics for non-invasive neurosurgery and cardiac catheter interventions.',
+    challenge: 'AUST needed to articulate complex biomechanical engineering breakthroughs to Tier 1 Silicon Valley VC partners within a 2-week window.',
+    solution: 'Distilled 120 pages of clinical trial data into a crisp, cinematic 18-slide interactive presentation and investor portal.',
+    results: [
+      { label: 'Seed Round Closed', value: '$12.5M Oversubscribed' },
+      { label: 'Term Sheet Speed', value: '11 Days' },
+      { label: 'Investor Rating', value: '9.8 / 10' },
+    ],
+    accentColor: '#161922',
+    heroImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1400&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80',
+    ],
+  },
+  {
+    id: 'bnp-horizon',
+    title: 'Future of sustainable venture debt & climate equity',
+    client: 'BNP Paribas Horizon',
+    year: '2023',
+    category: 'Venture Capital & ESG',
+    tags: ['Brand System', 'Interactive ESG Data', 'Executive Reports'],
+    deliverables: ['Annual ESG Brand Book', 'Carbon Impact Calculator', 'Digital Annual Report'],
+    description: 'The green innovation fund dedicated to financing decarbonization infrastructure across EMEA.',
+    challenge: 'Transforming dense regulatory disclosures and impact metrics into an inspiring editorial experience for institutional LPs.',
+    solution: 'An editorial design system with bespoke infographics, fluid SVG data charts, and refined typographics.',
+    results: [
+      { label: 'Funds Allocated', value: '€2.1B' },
+      { label: 'LP Engagement', value: '+88%' },
+      { label: 'Red Dot Award', value: 'Communication Design' },
+    ],
+    accentColor: '#0A3B2F',
+    heroImage: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1400&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=80',
+    ],
+  },
+];
+
+export const SERVICES: ServiceItem[] = [
+  {
+    id: 'brochure-design',
+    title: 'Brochure Design',
+    subtitle: 'Captivating layouts & illustrations',
+    description:
+      'We have often seen that designs have the power to captivate and people find it interesting to know and understand by drawings and designs rather than reading it. Words at times fail to make people understand their motives but with vibrant colors and meaningful designs, the message can be communicated very well.',
+    deliverables: [
+      'Bi-Fold, Tri-Fold & Multi-Page Formats',
+      'High-Impact Infographics & Vector Art',
+      'Print-Ready 300DPI Bleed & PDF Files',
+      'Adobe Illustrator / InDesign Source Files',
+    ],
+    timeline: '3–5 Days',
+    badge: 'Popular',
+    pricingTag: 'Custom Quote',
+    features: ['Vibrant color palettes', 'Clear typography hierarchy', 'Unlimited feedback rounds', 'High-res print exports'],
+  },
+  {
+    id: 'packaging-printing',
+    title: 'Packaging Printing',
+    subtitle: 'Custom boxes & luxury cartons',
+    description:
+      'Have you noticed that having only incredibly awesome product is not enough, nowadays even the packaging needs to look attractive. Hence we are certainly the solution that you are looking for because we deal with all the type of package printing that you will need. We know that each product is different and so is the packaging details. Hence we make a customized package printing available to you at the most competitive rates.',
+    deliverables: [
+      'Custom Rigid & Folding Cartons',
+      'Corrugated Mailers & Product Sleeves',
+      'Embossing, Debossing & Foil Accents',
+      'Prototyping & Structural Dielines',
+    ],
+    timeline: '7–12 Days',
+    badge: 'High Impact',
+    pricingTag: 'Competitive Rates',
+    features: ['Eco-friendly stocks', 'Custom die-cuts', 'Pantone color fidelity', 'Sample prototyping'],
+  },
+  {
+    id: 'logo-design',
+    title: 'Logo Design',
+    subtitle: 'Symbolic identity that connects',
+    description:
+      'Each business needs a symbolic identity what we call it as a logo and that logo should be so designed that it can convey the theme of your business or brand. Our creative corner has the vision and they design logo in such a way that it will let people connect with the brand.',
+    deliverables: [
+      'Primary, Secondary & Monogram Marks',
+      'Complete Vector Master Files (SVG, EPS, PNG, PDF)',
+      'Brand Color Palette & Typography Rules',
+      'Social Media & Favicon Assets',
+    ],
+    timeline: '4–7 Days',
+    badge: 'Signature',
+    pricingTag: 'Custom Quote',
+    features: ['100% original concepts', 'Full commercial rights', 'Scalable vector art', 'Brand style guide'],
+  },
+  {
+    id: 'booklet-printing',
+    title: 'Booklet Printing',
+    subtitle: 'Catalogs, lookbooks & corporate profiles',
+    description:
+      'Having a marketing done by handing over a booklet is one of the ways we can assist you and that is by providing you with unique concept of designing and up to the mark printing. We provide customized printing service so that your requirements can be met and it can look the way you have thought it to be.',
+    deliverables: [
+      'Saddle-Stitched, Perfect Bound & Wire-O',
+      'Product Catalogs & Editorial Lookbooks',
+      'Corporate Profiles & Annual Reports',
+      'High-Density Color Calibration',
+    ],
+    timeline: '5–8 Days',
+    badge: 'Editorial',
+    pricingTag: 'Custom Quote',
+    features: ['Laminated covers', 'Premium paper weights', 'Custom page counts', 'Express dispatch'],
+  },
+  {
+    id: 'stationery-printing',
+    title: 'Stationery Printing',
+    subtitle: 'Letterheads, cards, folders & notebooks',
+    description:
+      'There’s another way how you can make your brand gain visibility and popularity and this by stationery printing or putting up your brand’s name on stationery items. We supply well printed and clear stationery supply that can make your brand communication strongly. Our team can design and make colorful printing nicely visible on your stationery items so that it looks really good when handed over to your staff members or gifted to clients.',
+    deliverables: [
+      'Soft-Touch 450gsm Business Cards',
+      'Official Letterheads & Custom Envelopes',
+      'Presentation Folders & Branded Notepads',
+      'Corporate Welcome & Gift Bundles',
+    ],
+    timeline: '4–6 Days',
+    badge: 'Essential',
+    pricingTag: 'Custom Quote',
+    features: ['Foil stamping options', 'Textured cotton paper', 'Vibrant ink clarity', 'Bulk packaging'],
+  },
+  {
+    id: 'gift-cover',
+    title: 'Gift Cover',
+    subtitle: 'Bespoke sealed covers with vibrant designs',
+    description:
+      'What’s more than the wishes and blessings that comes straight from the heart and from a beautiful sealed covers? The vibrant colors with lovely designs will surely make you attracted towards the gift covers and it is one of the most convenient ways of giving gifts away. Hence we have this creative team that handles making gift covers and they also customize it if you want to.',
+    deliverables: [
+      'Festive & Corporate Bespoke Gift Covers',
+      'Metallic Foil Embossed Patterns',
+      'Custom Ribbon & Wax Seal Accents',
+      'Personalized Monograms & Greeting Inserts',
+    ],
+    timeline: '3–5 Days',
+    badge: 'Bespoke',
+    pricingTag: 'Custom Quote',
+    features: ['Shimmer & textured cardstock', 'Custom dimensions', 'Peel & seal closures', 'Handcrafted finish'],
+  },
+];
+
+export const ARTICLES: Article[] = [
+  {
+    id: 'typography-valuation',
+    title: 'Why Typography is Your Startup’s Secret Valuation Multiplier',
+    readTime: '4 min read',
+    date: 'August 2024',
+    category: 'Brand Strategy',
+    excerpt: 'Typography is 95% of web design. How leading founders leverage Swiss grotesque hierarchies to signal institutional permanence.',
+    content: `When investors land on your page, their subconscious makes a decision in 50 milliseconds. Long before they parse your unit economics or CAC payback period, the cadence of your typefaces establishes whether you are a disposable side project or a market category creator.`,
+  },
+  {
+    id: 'pitch-deck-rules',
+    title: 'The 10-Slide Investor Deck Framework That Raised €45M',
+    readTime: '6 min read',
+    date: 'July 2024',
+    category: 'Fundraising',
+    excerpt: 'The exact visual structure, cognitive density rules, and slide rhythm used by our portfolio startups to close oversubscribed rounds.',
+    content: `Clarity is the ultimate leverage in fundraising. Learn how to remove 60% of text clutter while amplifying the emotional punch of your traction curves.`,
+  },
+  {
+    id: 'framer-vs-custom-code',
+    title: 'Framer vs. Custom WebGL: Engineering Modern Agency Websites in 2025',
+    readTime: '5 min read',
+    date: 'June 2024',
+    category: 'Engineering & Motion',
+    excerpt: 'How to strike the sweet spot between lightning-fast marketing agility and custom physics-based web animations.',
+    content: `Modern marketing teams need to ship landing pages in days, not quarters. We analyze our hybrid stack combining React motion choreography with component-driven architecture.`,
+  },
+];
+
+export const FOUNDER_DATA: TeamMember = {
+  name: 'Alexandre Renoir',
+  role: 'Founder & Design Director',
+  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+  location: 'Paris, France',
+  bio: 'Former Creative Lead at leading European design studios. Obsessed with high-contrast typography, mathematical layouts, and high-converting product interfaces.',
+};
