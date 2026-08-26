@@ -199,10 +199,10 @@ export const Hero: React.FC = () => {
     <main
       id="hero"
       ref={containerRef}
-      className="relative isolate flex flex-col min-h-[85dvh] sm:min-h-[100dvh] overflow-hidden text-[#121212] antialiased"
+      className="relative isolate flex flex-col h-[100dvh] min-h-[100dvh] w-full overflow-hidden text-[#121212] antialiased"
       style={{ fontFamily: '"Space Grotesk", sans-serif' }}
     >
-      <section className="relative z-10 flex-1 flex flex-col justify-center items-center px-4 sm:px-8 md:px-12 pt-16 sm:pt-0 pb-8 sm:pb-[10vh]">
+      <section className="relative z-10 flex-1 flex flex-col justify-center items-center px-4 sm:px-8 md:px-12">
         <div className="w-full text-center flex flex-col items-center [perspective:1000px]">
           {/* STATIC MAIN HERO TEXT WITH 3D MASKED REVEAL */}
           <h1 className="text-[clamp(2.75rem,7vw,6rem)] leading-[0.95] font-medium tracking-[-0.03em] flex flex-col items-center w-full max-w-full px-4">

@@ -93,12 +93,15 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
   useGSAP(
     () => {
       const cardEls = gsap.utils.toArray<HTMLElement>(".stack-card");
+      const isMobile = window.innerWidth < 768;
+      const yOffset = isMobile ? 22 : 45;
+      const scaleStep = isMobile ? 0.03 : 0.05;
 
       // Set initial stacked states
       cardEls.forEach((card, i) => {
         gsap.set(card, {
-          y: i * 45,
-          scale: 1 - i * 0.05,
+          y: i * yOffset,
+          scale: 1 - i * scaleStep,
           transformOrigin: "top center",
           opacity: 1,
           force3D: true,
@@ -122,7 +125,7 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
           start: "top top",
           end: `+=${cardEls.length * 60}%`, // Smaller scroll duration
           pin: true,
-          scrub: 0.4, // Much faster scrub response
+          scrub: 0.4, // Fast scrub response
         },
       });
 
@@ -153,8 +156,8 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
           stepTl.to(
             remainingCard,
             {
-              y: newSlot * 45,
-              scale: 1 - newSlot * 0.05,
+              y: newSlot * yOffset,
+              scale: 1 - newSlot * scaleStep,
               force3D: true,
               ease: "power2.inOut",
             },
@@ -172,9 +175,9 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
     <section
       id="works"
       ref={containerRef}
-      className="relative w-full min-h-[75vh] md:min-h-screen flex items-center justify-center px-3.5 sm:px-8 md:px-12 py-8 sm:py-12"
+      className="relative w-full h-[100dvh] min-h-[100dvh] flex items-center justify-center px-4 sm:px-8 md:px-12 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto relative h-[54vh] min-h-[380px] sm:h-[65vh] sm:min-h-[420px] md:h-[75vh] md:min-h-[480px] max-h-[700px] w-full">
+      <div className="max-w-7xl mx-auto relative h-[65vh] min-h-[460px] max-h-[700px] w-full">
         {STACKED_SERVICES.map((card, i) => {
           const images = (CATEGORY_IMAGES[card.id] || []).slice(0, 3);
           const hasImages = images.length > 0;
@@ -182,7 +185,7 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
           return (
             <div
               key={card.id}
-              className={`stack-card absolute inset-0 w-full rounded-[24px] sm:rounded-[32px] overflow-hidden p-5 sm:p-8 md:p-12 border border-[#121212]/5 shadow-2xl flex flex-col will-change-transform ${
+              className={`stack-card absolute inset-0 w-full rounded-[24px] sm:rounded-[32px] overflow-hidden p-6 sm:p-8 md:p-12 border border-[#121212]/5 shadow-2xl flex flex-col will-change-transform ${
                 hasImages ? "justify-start" : "justify-center"
               }`}
               style={{
@@ -192,24 +195,24 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
               }}
             >
               <div
-                className={`flex flex-col md:flex-row md:items-start gap-3 sm:gap-6 md:gap-10 overflow-hidden w-full h-full justify-center md:justify-between`}
+                className={`flex flex-col md:flex-row md:items-start gap-4 sm:gap-6 md:gap-10 overflow-hidden w-full h-full justify-center md:justify-between`}
               >
                 <div className="flex flex-col flex-none md:flex-1 max-w-2xl min-w-0 overflow-hidden">
                   <div className="overflow-y-auto no-scrollbar pr-1 sm:pr-2 md:pr-4">
                     <span className="block font-mono text-xs sm:text-sm md:text-xl font-bold uppercase tracking-widest opacity-60 mb-2 sm:mb-4">
                       {card.number}
                     </span>
-                    <h3 className="text-[clamp(1.5rem,4vw,3.75rem)] font-black uppercase tracking-tight leading-[0.95]">
+                    <h3 className="text-[clamp(1.65rem,4vw,3.75rem)] font-black uppercase tracking-tight leading-[0.95]">
                       {card.title}
                     </h3>
-                    <p className="mt-2 sm:mt-4 md:mt-6 text-xs sm:text-base md:text-lg opacity-80 leading-relaxed font-medium line-clamp-3 sm:line-clamp-none">
+                    <p className="mt-2.5 sm:mt-4 md:mt-6 text-xs sm:text-base md:text-lg opacity-80 leading-relaxed font-medium line-clamp-3 sm:line-clamp-none">
                       {card.description}
                     </p>
                   </div>
                   <div className="pt-3 sm:pt-6 shrink-0">
                     <button
                       onClick={() => navigate(`/portfolio/${card.id}`)}
-                      className="self-start group inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
+                      className="self-start group inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
                       style={{
                         backgroundColor: card.accentColor,
                         color:
@@ -223,16 +226,16 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
                 </div>
 
                 {hasImages && (
-                  <div className="flex md:flex-col gap-2.5 sm:gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar snap-x snap-mandatory md:w-64 md:flex-shrink-0 md:h-full pb-1 md:pb-0 md:pr-2 pointer-events-auto shrink-0 mt-2 sm:mt-4 md:mt-0">
+                  <div className="flex md:flex-col gap-3 sm:gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar snap-x snap-mandatory md:w-64 md:flex-shrink-0 md:h-full pb-1 md:pb-0 md:pr-2 pointer-events-auto shrink-0 mt-3 sm:mt-4 md:mt-0">
                     {images.map((src, idx) => (
                       <div
                         key={idx}
-                        className="relative flex-shrink-0 w-40 sm:w-56 md:w-64 h-28 sm:h-40 md:h-48 rounded-xl sm:rounded-2xl overflow-hidden snap-center group/img bg-white border border-black/5"
+                        className="relative flex-shrink-0 w-44 sm:w-56 md:w-64 h-32 sm:h-40 md:h-48 rounded-xl sm:rounded-2xl overflow-hidden snap-center group/img bg-white border border-black/5"
                       >
                         <img
                           src={src}
                           alt={`${card.title} ${idx + 1}`}
-                          className="absolute inset-0 w-full h-full object-contain object-center p-2.5 sm:p-4 transition-transform duration-700 group/img:scale-105"
+                          className="absolute inset-0 w-full h-full object-contain object-center p-3 sm:p-4 transition-transform duration-700 group/img:scale-105"
                         />
                       </div>
                     ))}
