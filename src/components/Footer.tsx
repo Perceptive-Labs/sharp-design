@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { motion, type Variants } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import { motion, useInView, type Variants } from "framer-motion";
+import { LOGO_URL } from "../lib/assets";
 import { ArrowUp } from "lucide-react";
 
 interface NavColumn {
@@ -138,7 +139,7 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTop, onBookCall }) => {
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <motion.div variants={itemVariants}>
               <img
-                src="/logo.png"
+                src={LOGO_URL}
                 alt="Sharp Design Logo"
                 className="h-10 sm:h-14 w-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
                 onClick={onScrollTop}

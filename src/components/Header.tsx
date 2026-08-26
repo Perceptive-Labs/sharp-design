@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { smoothScrollToId } from "../lib/scroll";
+import { LOGO_URL } from "../lib/assets";
 
 interface HeaderProps {
   onMenuOpen?: () => void;
@@ -65,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
         className="nav-item flex items-center gap-2 relative z-10 shrink-0"
       >
         <img
-          src="/logo.png"
+          src={LOGO_URL}
           alt="Sharp Design Logo"
           className="h-6 sm:h-8 w-auto object-contain"
         />

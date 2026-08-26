@@ -5,26 +5,12 @@ import { motion } from "framer-motion";
 import { ContactUs } from "./ContactUs";
 import { Footer } from "../components/Footer";
 import { ShaderBackground } from "../components/ShaderBackground";
+import { getAssetUrl } from "../lib/assets";
 
 export const CATEGORY_IMAGES: Record<string, string[]> = {
   "brochure-designs": [],
   "packaging-prints": [],
-  logos: [
-    "/portfolio/logo/1.jpg",
-    "/portfolio/logo/2.jpg",
-    "/portfolio/logo/3.jpg",
-    "/portfolio/logo/4.jpg",
-    "/portfolio/logo/5.jpg",
-    "/portfolio/logo/6.jpg",
-    "/portfolio/logo/7.jpg",
-    "/portfolio/logo/8.jpg",
-    "/portfolio/logo/9.jpg",
-    "/portfolio/logo/10.jpg",
-    "/portfolio/logo/11.jpg",
-    "/portfolio/logo/12.jpg",
-    "/portfolio/logo/13.jpg",
-    "/portfolio/logo/14.jpg",
-  ],
+  logos: Array.from({ length: 14 }, (_, i) => getAssetUrl(`portfolio/logo/${i + 1}.webp`)),
   "booklet-prints": [],
   "stationery-prints": [],
   "gift-cover-designs": [],

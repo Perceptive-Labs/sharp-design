@@ -1,8 +1,9 @@
 import React from "react";
+import { getAssetUrl } from "../lib/assets";
 
 export const Clients: React.FC = () => {
-  const row1 = Array.from({ length: 7 }, (_, i) => `/portfolio/logo/${i + 1}.jpg`);
-  const row2 = Array.from({ length: 7 }, (_, i) => `/portfolio/logo/${i + 8}.jpg`);
+  const row1 = Array.from({ length: 7 }, (_, i) => getAssetUrl(`portfolio/logo/${i + 1}.webp`));
+  const row2 = Array.from({ length: 7 }, (_, i) => getAssetUrl(`portfolio/logo/${i + 8}.webp`));
 
   return (
     <section

@@ -1,4 +1,5 @@
 import React from "react";
+import { LOGO_URL } from "../lib/assets";
 
 interface SharpDesignLogoProps {
   variant?: "dark" | "light" | "colored";
@@ -15,19 +16,10 @@ export const SharpDesignLogo: React.FC<SharpDesignLogoProps> = ({
   className = "",
   onClick,
 }) => {
-  const isDark = variant === "dark";
-  const isLight = variant === "light";
-
   const iconSizes = {
     sm: "h-6",
     md: "h-8",
     lg: "h-12",
-  };
-
-  const textSizes = {
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-xl",
   };
 
   return (
@@ -36,7 +28,7 @@ export const SharpDesignLogo: React.FC<SharpDesignLogoProps> = ({
       className={`inline-flex items-center select-none ${onClick ? "cursor-pointer" : ""} ${className}`}
     >
       <img
-        src="/logo.png"
+        src={LOGO_URL}
         alt="Sharp Design Logo"
         className={`${iconSizes[size]} h-auto object-contain transition-transform duration-300 hover:scale-105 `}
       />

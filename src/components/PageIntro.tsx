@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { LOGO_URL } from "../lib/assets";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -102,7 +103,7 @@ export const PageIntro: React.FC = () => {
       <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center">
         <img
           ref={markRef}
-          src="/logo.png"
+          src={LOGO_URL}
           alt="Sharp Design Logo"
           className="h-16 sm:h-20 w-auto object-contain"
         />
