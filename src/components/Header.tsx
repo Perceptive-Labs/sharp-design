@@ -42,6 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
       duration: 0.8,
       ease: "power3.out",
       delay: 0.2,
+      clearProps: "all",
     });
   }, []);
 
@@ -57,8 +58,15 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-[60] flex items-center justify-between px-4 sm:px-8 md:px-12 transition-all duration-500 bg-transparent ${isScrolled ? "py-3 sm:py-4" : "py-5 sm:py-6"
-        } ${isHidden ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100 pointer-events-auto"}`}
+      className={`fixed top-0 inset-x-0 z-[60] flex items-center justify-between px-4 sm:px-8 md:px-12 transition-all duration-300 ${
+        isScrolled
+          ? "py-2.5 sm:py-3.5 bg-white/85 backdrop-blur-md shadow-sm border-b border-black/5"
+          : "py-4 sm:py-6 bg-transparent"
+      } ${
+        isHidden
+          ? "lg:-translate-y-full lg:opacity-0 lg:pointer-events-none translate-y-0 opacity-100 pointer-events-auto"
+          : "translate-y-0 opacity-100 pointer-events-auto"
+      }`}
     >
       <Link
         to="/"
@@ -71,15 +79,14 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
         />
       </Link>
 
-
-
       <button
         onClick={onMenuOpen}
         aria-label="Open menu"
-        className={`mt-2 nav-item group relative flex shrink-0 items-center justify-center w-12 h-12 rounded-2xl bg-white/80 backdrop-blur-md overflow-visible cursor-pointer border border-black/20 transition-all duration-300 pointer-events-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C00] ${location.pathname === "/" ? "lg:hidden" : ""
-          }`}
+        className={`nav-item group relative flex shrink-0 items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-black text-white hover:bg-[#FF5C00] shadow-md transition-all duration-300 cursor-pointer pointer-events-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C00] active:scale-95 ${
+          location.pathname === "/" ? "lg:hidden" : ""
+        }`}
       >
-        <span className="font-mono text-[10px] sm:text-[9px] font-bold tracking-widest text-black flex items-center justify-center pt-0.5">
+        <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-widest uppercase flex items-center justify-center">
           MENU
         </span>
       </button>
