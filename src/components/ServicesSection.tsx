@@ -317,10 +317,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10 pointer-events-none" />
 
           <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
-            <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
-                01
-              </span>
+            <div className="flex justify-end items-end w-full mb-1">
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
                 ↗
               </span>
@@ -358,10 +355,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#120a06]/95 via-[#120a06]/40 to-transparent z-10 pointer-events-none" />
 
           <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
-            <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
-                02
-              </span>
+            <div className="flex justify-end items-end w-full mb-1">
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
                 ↗
               </span>
@@ -402,10 +396,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none" />
 
           <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
-            <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] mb-1 sm:mb-2 block font-bold">
-                03
-              </span>
+            <div className="flex justify-end items-end w-full mb-1">
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light text-[#ff5c00]">
                 ↗
               </span>
@@ -440,10 +431,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none" />
 
           <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
-            <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
-                04
-              </span>
+            <div className="flex justify-end items-end w-full mb-1">
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
                 ↗
               </span>
@@ -478,10 +466,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#120a06]/95 via-[#120a06]/40 to-transparent z-10 pointer-events-none" />
 
           <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
-            <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
-                05
-              </span>
+            <div className="flex justify-end items-end w-full mb-1">
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
                 ↗
               </span>
@@ -524,10 +509,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#000000]/90 via-[#000000]/40 to-transparent z-10 pointer-events-none" />
 
           <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-10 flex flex-col w-full text-white max-w-2xl">
-            <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] font-bold mb-1 sm:mb-2 block">
-                06
-              </span>
+            <div className="flex justify-end items-end w-full mb-1">
               <span className="editorial-arrow text-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light text-[#ff5c00]">
                 ↗
               </span>
