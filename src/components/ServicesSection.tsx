@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-import { X, CheckCircle2, Printer, ArrowRight } from 'lucide-react';
-import { LogoDesigningVideoCard } from './LogoDesigningVideoCard';
+import React, { useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { X, CheckCircle2, Printer, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -23,113 +23,144 @@ export interface ServiceDetail {
 
 export const COMPANY_SERVICES: ServiceDetail[] = [
   {
-    id: 'brochure-design',
-    title: 'Brochure Design',
-    category: 'Graphic Design',
-    tagline: 'Captivating visual storytelling through drawings & vibrant colors',
+    id: "brochure-design",
+    title: "Brochure Design",
+    category: "Graphic Design",
+    tagline:
+      "Captivating visual storytelling through drawings & vibrant colors",
     description:
-      'We have often seen that designs have the power to captivate and people find it interesting to know and understand by drawings and designs rather than reading it. Words at times fail to make people understand their motives but with vibrant colors and meaningful designs, the message can be communicated very well.',
-    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=85',
+      "We have often seen that designs have the power to captivate and people find it interesting to know and understand by drawings and designs rather than reading it. Words at times fail to make people understand their motives but with vibrant colors and meaningful designs, the message can be communicated very well.",
+    image:
+      "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=85",
     deliverables: [
-      'Bi-Fold, Tri-Fold & Multi-Fold Formats',
-      'High-Impact Infographics & Vector Illustrations',
-      'Print-Ready 300DPI PDF with Full Bleed Marks',
-      'Editable Adobe Illustrator & InDesign Source Files',
+      "Bi-Fold, Tri-Fold & Multi-Fold Formats",
+      "High-Impact Infographics & Vector Illustrations",
+      "Print-Ready 300DPI PDF with Full Bleed Marks",
+      "Editable Adobe Illustrator & InDesign Source Files",
     ],
-    specs: ['Silk / Matte / Gloss finish', '170gsm to 350gsm premium art paper', 'Spot UV & Metallic foil ready'],
-    turnaround: '3–5 Business Days',
-    badge: 'Popular',
+    specs: [
+      "Silk / Matte / Gloss finish",
+      "170gsm to 350gsm premium art paper",
+      "Spot UV & Metallic foil ready",
+    ],
+    turnaround: "3–5 Business Days",
+    badge: "Popular",
   },
   {
-    id: 'packaging-printing',
-    title: 'Packaging Printing',
-    category: 'Print & Packaging',
-    tagline: 'Custom packaging solutions tailored for standout shelf appeal',
+    id: "packaging-printing",
+    title: "Packaging Printing",
+    category: "Print & Packaging",
+    tagline: "Custom packaging solutions tailored for standout shelf appeal",
     description:
-      'Have you noticed that having only incredibly awesome product is not enough, nowadays even the packaging needs to look attractive. Hence we are certainly the solution that you are looking for because we deal with all the type of package printing that you will need. We know that each product is different and so is the packaging details. Hence we make a customized package printing available to you at the most competitive rates.',
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=85',
+      "Have you noticed that having only incredibly awesome product is not enough, nowadays even the packaging needs to look attractive. Hence we are certainly the solution that you are looking for because we deal with all the type of package printing that you will need. We know that each product is different and so is the packaging details. Hence we make a customized package printing available to you at the most competitive rates.",
+    image:
+      "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=85",
     deliverables: [
-      'Custom Rigid Boxes & Folding Cartons',
-      'Corrugated Mailers, Sleeves & Inserts',
-      'Embossing, Debossing & Foil Stamping',
-      'Prototyping, Dielines & 3D Structural Mockups',
+      "Custom Rigid Boxes & Folding Cartons",
+      "Corrugated Mailers, Sleeves & Inserts",
+      "Embossing, Debossing & Foil Stamping",
+      "Prototyping, Dielines & 3D Structural Mockups",
     ],
-    specs: ['Eco-friendly recyclable kraft & card stock', 'Custom die-cut shapes', 'Pantone color matching'],
-    turnaround: '7–12 Business Days',
-    badge: 'High Impact',
+    specs: [
+      "Eco-friendly recyclable kraft & card stock",
+      "Custom die-cut shapes",
+      "Pantone color matching",
+    ],
+    turnaround: "7–12 Business Days",
+    badge: "High Impact",
   },
   {
-    id: 'logo-design',
-    title: 'Logo Design',
-    category: 'Brand Identity',
-    tagline: 'Symbolic identity that creates deep brand connection',
+    id: "logo-design",
+    title: "Logo Design",
+    category: "Brand Identity",
+    tagline: "Symbolic identity that creates deep brand connection",
     description:
-      'Each business needs a symbolic identity what we call it as a logo and that logo should be so designed that it can convey the theme of your business or brand. Our creative corner has the vision and they design logo in such a way that it will let people connect with the brand.',
-    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=85',
+      "Each business needs a symbolic identity what we call it as a logo and that logo should be so designed that it can convey the theme of your business or brand. Our creative corner has the vision and they design logo in such a way that it will let people connect with the brand.",
+    image:
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=85",
     deliverables: [
-      'Primary, Secondary & Monogram Logo Suites',
-      'Full Vector Suite (SVG, EPS, PNG, PDF)',
-      'Brand Color Palette & Typography Guidelines',
-      'Favicon, App Icon & Social Kit Formats',
+      "Primary, Secondary & Monogram Logo Suites",
+      "Full Vector Suite (SVG, EPS, PNG, PDF)",
+      "Brand Color Palette & Typography Guidelines",
+      "Favicon, App Icon & Social Kit Formats",
     ],
-    specs: ['Infinitely scalable vector art', 'Light & Dark mode variations', '100% intellectual property ownership'],
-    turnaround: '4–7 Business Days',
-    badge: 'Core Identity',
+    specs: [
+      "Infinitely scalable vector art",
+      "Light & Dark mode variations",
+      "100% intellectual property ownership",
+    ],
+    turnaround: "4–7 Business Days",
+    badge: "Core Identity",
     isVideo: true,
   },
   {
-    id: 'booklet-printing',
-    title: 'Booklet Printing',
-    category: 'Print & Packaging',
-    tagline: 'Unique design concepts with up-to-the-mark printing',
+    id: "booklet-printing",
+    title: "Booklet Printing",
+    category: "Print & Packaging",
+    tagline: "Unique design concepts with up-to-the-mark printing",
     description:
-      'Having a marketing done by handing over a booklet is one of the ways we can assist you and that is by providing you with unique concept of designing and up to the mark printing. We provide customized printing service so that your requirements can be met and it can look the way you have thought it to be.',
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=85',
+      "Having a marketing done by handing over a booklet is one of the ways we can assist you and that is by providing you with unique concept of designing and up to the mark printing. We provide customized printing service so that your requirements can be met and it can look the way you have thought it to be.",
+    image:
+      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=85",
     deliverables: [
-      'Saddle-Stitched, Perfect Bound & Wire-O Options',
-      'Product Catalogs & Editorial Lookbooks',
-      'Corporate Profiles, Portfolios & Annual Reports',
-      'High-Density Color Calibration & Bleed Controls',
+      "Saddle-Stitched, Perfect Bound & Wire-O Options",
+      "Product Catalogs & Editorial Lookbooks",
+      "Corporate Profiles, Portfolios & Annual Reports",
+      "High-Density Color Calibration & Bleed Controls",
     ],
-    specs: ['8 to 64+ page options', 'Soft-touch velvet laminated covers', 'FSC-certified interior paper'],
-    turnaround: '5–8 Business Days',
-    badge: 'Editorial',
+    specs: [
+      "8 to 64+ page options",
+      "Soft-touch velvet laminated covers",
+      "FSC-certified interior paper",
+    ],
+    turnaround: "5–8 Business Days",
+    badge: "Editorial",
   },
   {
-    id: 'stationery-printing',
-    title: 'Stationery Printing',
-    category: 'Print & Packaging',
-    tagline: 'Elevate visibility with vibrant, high-clarity stationery',
+    id: "stationery-printing",
+    title: "Stationery Printing",
+    category: "Print & Packaging",
+    tagline: "Elevate visibility with vibrant, high-clarity stationery",
     description:
-      'There’s another way how you can make your brand gain visibility and popularity and this by stationery printing or putting up your brand’s name on stationery items. We supply well printed and clear stationery supply that can make your brand communication strongly. Our team can design and make colorful printing nicely visible on your stationery items so that it looks really good when handed over to your staff members or gifted to clients.',
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1200&q=85',
+      "There’s another way how you can make your brand gain visibility and popularity and this by stationery printing or putting up your brand’s name on stationery items. We supply well printed and clear stationery supply that can make your brand communication strongly. Our team can design and make colorful printing nicely visible on your stationery items so that it looks really good when handed over to your staff members or gifted to clients.",
+    image:
+      "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1200&q=85",
     deliverables: [
-      'Soft-Touch 450gsm Premium Business Cards',
-      'Official Executive Letterheads & Envelopes',
-      'Custom Presentation Folders & Notepads',
-      'Staff Onboarding & Client Gift Stationery Kits',
+      "Soft-Touch 450gsm Premium Business Cards",
+      "Official Executive Letterheads & Envelopes",
+      "Custom Presentation Folders & Notepads",
+      "Staff Onboarding & Client Gift Stationery Kits",
     ],
-    specs: ['Gold, Silver & Rose Gold foil stamping', 'Textured cotton paper stocks', 'Edge-painted card accents'],
-    turnaround: '4–6 Business Days',
-    badge: 'Essential',
+    specs: [
+      "Gold, Silver & Rose Gold foil stamping",
+      "Textured cotton paper stocks",
+      "Edge-painted card accents",
+    ],
+    turnaround: "4–6 Business Days",
+    badge: "Essential",
   },
   {
-    id: 'gift-cover',
-    title: 'Gift Cover',
-    category: 'Print & Packaging',
-    tagline: 'Heartfelt blessings in beautifully designed sealed covers',
+    id: "gift-cover",
+    title: "Gift Cover",
+    category: "Print & Packaging",
+    tagline: "Heartfelt blessings in beautifully designed sealed covers",
     description:
-      'What’s more than the wishes and blessings that comes straight from the heart and from a beautiful sealed covers? The vibrant colors with lovely designs will surely make you attracted towards the gift covers and it is one of the most convenient ways of giving gifts away. Hence we have this creative team that handles making gift covers and they also customize it if you want to.',
-    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=85',
+      "What’s more than the wishes and blessings that comes straight from the heart and from a beautiful sealed covers? The vibrant colors with lovely designs will surely make you attracted towards the gift covers and it is one of the most convenient ways of giving gifts away. Hence we have this creative team that handles making gift covers and they also customize it if you want to.",
+    image:
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=85",
     deliverables: [
-      'Festive, Wedding & Corporate Bespoke Gift Covers',
-      'Metallic Foil Embossed & Debossed Patterns',
-      'Custom Ribbon, Wax Seal & Peel Closures',
-      'Personalized Monograms & Greeting Inserts',
+      "Festive, Wedding & Corporate Bespoke Gift Covers",
+      "Metallic Foil Embossed & Debossed Patterns",
+      "Custom Ribbon, Wax Seal & Peel Closures",
+      "Personalized Monograms & Greeting Inserts",
     ],
-    specs: ['Handcrafted shimmer & textured cardstocks', 'Custom batch sizes & dimensions', 'Self-seal adhesive strip'],
-    turnaround: '3–5 Business Days',
-    badge: 'Bespoke',
+    specs: [
+      "Handcrafted shimmer & textured cardstocks",
+      "Custom batch sizes & dimensions",
+      "Self-seal adhesive strip",
+    ],
+    turnaround: "3–5 Business Days",
+    badge: "Bespoke",
   },
 ];
 
@@ -137,40 +168,93 @@ interface ServicesSectionProps {
   onBookCall: () => void;
 }
 
-export const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookCall }) => {
+export const ServicesSection: React.FC<ServicesSectionProps> = ({
+  onBookCall,
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
 
-  useGSAP(() => {
-    // GSAP Reveal for Header
-    gsap.fromTo(
-      '.service-header-el',
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        }
-      }
-    );
+  const { contextSafe } = useGSAP(
+    () => {
+      // GSAP Reveal for Header
+      gsap.fromTo(
+        ".service-header-el",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+          },
+        },
+      );
 
-    // GSAP Reveal for Bento Grid Cards using batch
-    ScrollTrigger.batch('.bento-card', {
-      onEnter: (elements) => {
-        gsap.fromTo(
-          elements,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', overwrite: true }
-        );
-      },
-      start: 'top 85%',
-    });
-  }, { scope: containerRef });
+      // GSAP Reveal for Bento Grid Cards using batch
+      ScrollTrigger.batch(".bento-card", {
+        onEnter: (elements) => {
+          gsap.fromTo(
+            elements,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              stagger: 0.1,
+              duration: 0.8,
+              ease: "power3.out",
+              overwrite: true,
+            },
+          );
+        },
+        start: "top 85%",
+      });
+    },
+    { scope: containerRef },
+  );
+
+  const handleMouseEnter = contextSafe((e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    const img = card.querySelector(".editorial-img");
+    const content = card.querySelector(".editorial-content");
+    const arrow = card.querySelector(".editorial-arrow");
+    const microTarget = card.querySelector(".micro-target");
+
+    gsap.to(card, { y: -2, duration: 1, ease: "power3.out" });
+    if (img) gsap.to(img, { scale: 1.03, duration: 1.5, ease: "power2.out" });
+    if (content) gsap.to(content, { y: -4, duration: 0.8, ease: "power2.out" });
+    if (arrow)
+      gsap.to(arrow, { x: 3, y: -3, duration: 0.6, ease: "power3.out" });
+    if (microTarget)
+      gsap.to(microTarget, {
+        rotation: 90,
+        scale: 1.1,
+        duration: 1,
+        ease: "power2.out",
+      });
+  });
+
+  const handleMouseLeave = contextSafe((e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    const img = card.querySelector(".editorial-img");
+    const content = card.querySelector(".editorial-content");
+    const arrow = card.querySelector(".editorial-arrow");
+    const microTarget = card.querySelector(".micro-target");
+
+    gsap.to(card, { y: 0, duration: 1, ease: "power3.out" });
+    if (img) gsap.to(img, { scale: 1, duration: 1.5, ease: "power2.out" });
+    if (content) gsap.to(content, { y: 0, duration: 0.8, ease: "power2.out" });
+    if (arrow)
+      gsap.to(arrow, { x: 0, y: 0, duration: 0.6, ease: "power3.out" });
+    if (microTarget)
+      gsap.to(microTarget, {
+        rotation: 0,
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+      });
+  });
 
   const service1_Brochure = COMPANY_SERVICES[0];
   const service2_Packaging = COMPANY_SERVICES[1];
@@ -179,210 +263,284 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookCall }) 
   const service5_Stationery = COMPANY_SERVICES[4];
   const service6_GiftCover = COMPANY_SERVICES[5];
 
+  const navigate = useNavigate();
+
   return (
     <section
       id="services"
       ref={containerRef}
-      className="relative w-full text-[#121212] py-20 md:py-32 px-4 sm:px-8 md:px-16 overflow-hidden"
+      className="relative w-full bg-transparent text-white pt-12 sm:pt-16 md:pt-20 pb-20 md:pb-32 px-4 sm:px-8 md:px-16 overflow-hidden"
     >
       {/* Top Header Editorial Block */}
-      <div className="max-w-7xl mx-auto flex flex-col items-start mb-16 md:mb-24">
-        <h2 className="service-header-el text-4xl sm:text-6xl md:text-8xl font-black text-[#121212] tracking-tight leading-none uppercase">
-          Capabilities <span className="text-[#FF5C00]">.</span>
+      <div className="max-w-7xl mx-auto flex flex-col items-start mb-8 sm:mb-12 md:mb-14">
+        <h1
+          className="service-header-el text-[clamp(2rem,5vw,4.5rem)] uppercase tracking-tight leading-none text-[#2B2A29]"
+          style={{ fontFamily: '"Syne", sans-serif', fontWeight: 800 }}
+        >
+          Our
+        </h1>
+        <h2
+          className="service-header-el text-[clamp(2rem,5vw,4.5rem)] uppercase tracking-tight leading-none text-[#2B2A29]"
+          style={{ fontFamily: '"Syne", sans-serif', fontWeight: 800 }}
+        >
+          Services <span className="text-[#FF5C00]">.</span>
         </h2>
-        <p className="service-header-el mt-6 max-w-2xl text-lg sm:text-xl md:text-2xl text-[#2b2927] font-medium leading-relaxed tracking-tight">
-          We create innovative graphic designs, bespoke packaging, and high-precision print solutions that captivate your audience.
+        <p className="service-header-el mt-4 sm:mt-6 max-w-2xl text-[clamp(1rem,2.5vw,1.5rem)] text-[#2B2A29] font-medium leading-relaxed tracking-tight">
+          We create innovative graphic designs, bespoke packaging, and
+          high-precision print solutions that captivate your audience.
         </p>
       </div>
 
-      {/* ================= BENTO GRID LAYOUT ================= */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-        
-        {/* Left Col (Brochure & Packaging) */}
-        <div className="md:col-span-5 flex flex-col gap-4 md:gap-6">
-          
-          <div 
-            onClick={() => setSelectedService(service1_Brochure)}
-            className="bento-card group relative rounded-2xl md:rounded-3xl overflow-hidden bg-[#121212] cursor-pointer h-64 md:h-80 transition-all duration-500 hover:shadow-2xl"
-          >
-            <img src={service1_Brochure.image} alt={service1_Brochure.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center z-30">
-              <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-300">
-                {service1_Brochure.title}
-              </h3>
+      {/* ================= EDITORIAL ART-DIRECTION GRID ================= */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 auto-rows-[minmax(200px,_auto)]">
+        {/* 1. Top Left: Brochure (span 7) */}
+        <article
+          onClick={() => navigate(`/services#${service1_Brochure.id}`)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[250px] md:min-h-[300px] cursor-pointer"
+        >
+          {/* Micro-Details Layer */}
+          <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className="micro-target absolute top-6 left-6 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
+              <div className="w-[1px] h-full bg-white/40"></div>
+              <div className="absolute w-full h-[1px] bg-white/40"></div>
             </div>
+            <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-white/40"></div>
           </div>
 
-          <div 
-            onClick={() => setSelectedService(service2_Packaging)}
-            className="bento-card group relative rounded-2xl md:rounded-3xl overflow-hidden bg-[#121212] cursor-pointer h-64 md:h-80 transition-all duration-500 hover:shadow-2xl"
-          >
-            <img src={service2_Packaging.image} alt={service2_Packaging.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center z-30">
-              <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-300">
-                {service2_Packaging.title}
-              </h3>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Col (Logo Design - Tall) */}
-        <div className="md:col-span-7">
-          <div 
-            onClick={() => setSelectedService(service3_Logo)}
-            className="bento-card group relative rounded-2xl md:rounded-3xl overflow-hidden bg-[#111215] cursor-pointer h-[500px] md:h-full transition-all duration-500 hover:shadow-2xl flex items-center justify-center"
-          >
-            <div className="absolute inset-0 w-full h-full">
-              <LogoDesigningVideoCard />
-            </div>
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center z-30">
-              <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-300">
-                {service3_Logo.title}
-              </h3>
-            </div>
-          </div>
-        </div>
-
-        {/* Full Width Banner (Booklet) */}
-        <div className="md:col-span-12">
-          <div 
-            onClick={() => setSelectedService(service4_Booklet)}
-            className="bento-card group relative rounded-2xl md:rounded-3xl overflow-hidden bg-[#121212] cursor-pointer h-64 md:h-96 transition-all duration-500 hover:shadow-2xl"
-          >
-            <img src={service4_Booklet.image} alt={service4_Booklet.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center z-30">
-              <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-300">
-                {service4_Booklet.title}
-              </h3>
-            </div>
-          </div>
-        </div>
-
-        {/* Left Col (Stationery - Tall) */}
-        <div className="md:col-span-7">
-          <div 
-            onClick={() => setSelectedService(service5_Stationery)}
-            className="bento-card group relative rounded-2xl md:rounded-3xl overflow-hidden bg-[#121212] cursor-pointer h-[500px] md:h-full transition-all duration-500 hover:shadow-2xl"
-          >
-            <img src={service5_Stationery.image} alt={service5_Stationery.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center z-30">
-              <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-300">
-                {service5_Stationery.title}
-              </h3>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Col (Gift Cover & CTA) */}
-        <div className="md:col-span-5 flex flex-col gap-4 md:gap-6">
-          <div 
-            onClick={() => setSelectedService(service6_GiftCover)}
-            className="bento-card group relative rounded-2xl md:rounded-3xl overflow-hidden bg-[#121212] cursor-pointer h-64 md:h-80 transition-all duration-500 hover:shadow-2xl"
-          >
-            <img src={service6_GiftCover.image} alt={service6_GiftCover.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center z-30">
-              <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-300">
-                {service6_GiftCover.title}
-              </h3>
-            </div>
-          </div>
-
-          <div 
-            onClick={onBookCall}
-            className="bento-card group relative rounded-2xl md:rounded-3xl overflow-hidden bg-[#121212] border border-white/5 cursor-pointer h-64 md:h-80 transition-all duration-500 hover:shadow-2xl flex items-center justify-center p-8 text-center"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#121212] to-[#1a1a1a]" />
-            <div className="relative z-10 flex flex-col items-center justify-center w-full">
-              <span className="text-[#FF5C00] font-mono text-xs font-bold uppercase tracking-widest mb-3">
-                Bespoke Project?
-              </span>
-              <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-6">
-                Request Quote
-              </h4>
-              <span className="px-6 py-3 rounded-full bg-white text-[#121212] font-mono text-xs font-bold uppercase tracking-wider group-hover:bg-[#FF5C00] group-hover:text-white transition-all">
-                Contact →
-              </span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Modal - Simple Conditional Render for now, or lightweight CSS animation */}
-      {selectedService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10">
-          <div 
-            onClick={() => setSelectedService(null)} 
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm cursor-pointer animate-in fade-in duration-300" 
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRmWecMymJ4K0_tMjhSpgE6QexJVWf7w18JrnWVKqrpfleCu1L_Bd295rNx9Xu4RxTl7AU1jB1QPgt-_6MH6BW0zi4dpfprv80bUd645f_NrWd4EsSKauJk70E5y3mw24pnhzxBEZCUppNu2mn7UkU3neEQSsFcSkhY9Sw6LobTfnD8A-mAF29gb8hHR6wUfhVv2DfqL1TuRCoVLPYFc1q2ZDDPJAnHN7694bJjVVwQoq_6nCXX-RF1Q=s1600"
+            alt="Brochure Design"
+            className="editorial-img absolute inset-0 w-full h-full object-cover z-0 opacity-90"
           />
-          <div className="relative w-full max-w-4xl bg-[#16161d] border border-white/10 rounded-3xl shadow-2xl overflow-y-auto z-10 text-white flex flex-col p-8 animate-in slide-in-from-bottom-8 duration-300 max-h-[90vh]">
-            
-            <button
-              onClick={() => setSelectedService(null)}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
+          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10 pointer-events-none" />
 
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#FF5C00]" />
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#FF5C00]">
-                {selectedService.category}
+          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+            <div className="flex justify-between items-end w-full mb-1">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+                01
+              </span>
+              <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
+                ↗
               </span>
             </div>
-
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-6 font-sans uppercase">
-              {selectedService.title}
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+              Brochure Design
             </h2>
-
-            <div className="w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8 bg-[#121212]">
-              {selectedService.isVideo ? (
-                <LogoDesigningVideoCard />
-              ) : (
-                <img src={selectedService.image} alt={selectedService.title} className="w-full h-full object-cover" />
-              )}
-            </div>
-
-            <div className="mb-8">
-              <p className="text-lg text-zinc-300 leading-relaxed font-sans max-w-3xl">
-                {selectedService.description}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-t border-white/10">
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider text-[#FF5C00] mb-4 font-bold flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4" /> What We Deliver
-                </h4>
-                <ul className="space-y-3">
-                  {selectedService.deliverables.map((item, idx) => (
-                    <li key={idx} className="text-sm text-zinc-300 flex items-start gap-2">
-                      <span className="text-[#FF5C00]">•</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-4 font-bold flex items-center gap-2">
-                  <Printer className="w-4 h-4" /> Specs & Turnaround
-                </h4>
-                <ul className="space-y-3">
-                  {selectedService.specs.map((item, idx) => (
-                    <li key={idx} className="text-sm text-zinc-300 flex items-start gap-2">
-                      <span className="text-zinc-500">•</span> {item}
-                    </li>
-                  ))}
-                  <li className="text-sm text-zinc-300 flex items-start gap-2 mt-4 pt-4 border-t border-white/10">
-                    <span className="text-white font-bold">Turnaround:</span> {selectedService.turnaround}
-                  </li>
-                </ul>
-              </div>
-            </div>
-
+            <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
+              PRINT / EDITORIAL / BRANDING
+            </p>
           </div>
-        </div>
-      )}
+        </article>
+
+        {/* 2. Top Right: Logo Designing (span 5) */}
+        <article
+          onClick={() => navigate(`/services#${service3_Logo.id}`)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="bento-card col-span-1 md:col-span-5 bg-[#271812] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[250px] md:min-h-[300px] cursor-pointer"
+        >
+          {/* Micro-Details Layer */}
+          <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className="micro-target absolute top-6 right-6 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
+              <div className="w-[1px] h-full bg-white/40"></div>
+              <div className="absolute w-full h-[1px] bg-white/40"></div>
+            </div>
+            <div className="absolute bottom-6 left-6 w-3 h-3 border-b border-l border-white/40"></div>
+          </div>
+
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzuybRzVad9lFQNVwd6Zr-BMgl9OIMTcYwVKWkZQ0KZbqSNXU1L3EF924PAOJwPodRp2bYoqglz_lSIgYAX2qStKZ4Xz6ldg5E8qyyS2fCeWYEHp1n-iwngwLsIaEzOmy0IjkDMSLmg1F4MDpRNKMnqd9Muc2GJc-LDMSThE7fDoIINekkMPQfUmpCQ1SHQ0od8V7mYmBHwDcJi272StRhM7fhdPg5dwKDIbouNkGN7c_IxwMXWSlQeQ=s1600"
+            alt="Logo Design"
+            className="editorial-img absolute inset-0 w-full h-full object-cover z-0 opacity-80"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#120a06]/95 via-[#120a06]/40 to-transparent z-10 pointer-events-none" />
+
+          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+            <div className="flex justify-between items-end w-full mb-1">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+                02
+              </span>
+              <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
+                ↗
+              </span>
+            </div>
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+              Logo Design
+            </h2>
+            <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
+              IDENTITY / TYPOGRAPHY / MARKS
+            </p>
+          </div>
+        </article>
+
+        {/* 3. Row 2 Left (Tall): Packaging Designing (span 5, row-span-2) */}
+        <article
+          onClick={() => navigate(`/services#${service2_Packaging.id}`)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="bento-card col-span-1 md:col-span-5 md:row-span-2 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[400px] md:min-h-[500px] cursor-pointer"
+        >
+          {/* Micro-Details Layer */}
+          <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className="micro-target absolute top-6 left-6 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
+              <div className="w-[1px] h-full bg-white/40"></div>
+              <div className="absolute w-full h-[1px] bg-white/40"></div>
+            </div>
+            <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-white/40"></div>
+            <span className="absolute top-6 right-6 font-mono text-[8px] text-white/40 tracking-widest">
+              X-4029
+            </span>
+          </div>
+
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMqxvq_9Y0XRRPGt_ql3JEpQdA5JIPr3__i6tVkiyPaK0dn9QaQ_HgOEg_xHIjCXL7UifnZ2wBPyfaVwAnZW_Rg3Y3o_bTLFtiIdHGtENyfiXBpIpCQZ3aaIjnNU5ujIgaa4keu_E6Pl9ioOFxTPf-5SgVRlBXyspKvakewvzI5K2qYtU9iuS9sQ35lKRJVSGsj6ofQGg7b0VuYGyvjyvB_WFshnW7ahL52GJMIr0xwK8qtDSsmArnYg=s1600"
+            alt="Packaging"
+            className="editorial-img absolute inset-0 w-full h-full object-cover z-0 opacity-90"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none" />
+
+          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+            <div className="flex justify-between items-end w-full mb-1">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] mb-2 block font-bold">
+                03
+              </span>
+              <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light text-[#ff5c00]">
+                ↗
+              </span>
+            </div>
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+              Packaging Design
+            </h2>
+            <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
+              3D STRUCTURAL / RETAIL / BESPOKE
+            </p>
+          </div>
+        </article>
+
+        {/* 4. Row 2 Right: Gift Cover (span 7) */}
+        <article
+          onClick={() => navigate(`/services#${service6_GiftCover.id}`)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px] cursor-pointer"
+        >
+          {/* Micro-Details Layer */}
+          <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className="absolute top-6 left-6 w-3 h-3 border-t border-l border-white/40"></div>
+            <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-white/40"></div>
+          </div>
+
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA4rTne13ioUde5jy9RrhSYhICK-xE6TPMrIpyHnGBhMdr0JjuOMa4GxCjwckQ-NV9WYei7xRNVLFv3kjFYa-fzJp-BtMJEA7DQfTbSsfwEgl-6V-nCvDmdNf3-h0lgix0YrBtJjuxQC6Kc19yIn8qxcTKByKNqbVdnWO2sYD64Z2QzqImyYOX14Q-6ZnPSU1tyiszhO1ix3ZI0vpXPhEgp8UUGttIEiF6hh12bZn6L-YDPPqnhs5tZw=s1600"
+            alt="Gift Cover"
+            className="editorial-img absolute inset-0 w-full h-full object-cover z-0 opacity-80"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none" />
+
+          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+            <div className="flex justify-between items-end w-full mb-1">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+                04
+              </span>
+              <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
+                ↗
+              </span>
+            </div>
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+              Gift Cover Design
+            </h2>
+            <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
+              LUXURY / FOIL STAMPING / PREMIUM
+            </p>
+          </div>
+        </article>
+
+        {/* 5. Row 3 Right: Booklet Printing (span 7) */}
+        <article
+          onClick={() => navigate(`/services#${service4_Booklet.id}`)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px] cursor-pointer"
+        >
+          {/* Micro-Details Layer */}
+          <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className="absolute top-6 left-6 w-3 h-3 border-t border-l border-white/40"></div>
+            <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-white/40"></div>
+          </div>
+
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW_C-GLSyN8c9H7bt4WAn2G-wVGsTdsrGZQCMinGuEkpKtCAR4cvayo5IdinBnJ_CRlyxTGPTLzuDdpgSiZGqtBJcNOdYfIsY-usRNrSHJdT4gPMuSkq7b67zHg72HoDLM4ZpJdGBRx-a4bBd0GphdaDJZxAVhmDc0XyIg7hjGLEn9w1yykTdx9Ary7x7yitTPw3CS-9yQxONVwYTn1zJgAWdjyu-UH8130at1O_p2YPBVjKbeUcfqwQ=s1600"
+            alt="Booklet Printing"
+            className="editorial-img absolute inset-0 w-full h-full object-cover z-0 opacity-80"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#120a06]/95 via-[#120a06]/40 to-transparent z-10 pointer-events-none" />
+
+          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+            <div className="flex justify-between items-end w-full mb-1">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+                05
+              </span>
+              <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
+                ↗
+              </span>
+            </div>
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+              Booklet Design
+            </h2>
+            <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
+              LAYOUT / BINDING / MULTI-PAGE
+            </p>
+          </div>
+        </article>
+
+        {/* 6. Row 4: Stationery Printing (span 12, full-width) */}
+        <article
+          onClick={() => navigate(`/services#${service5_Stationery.id}`)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="bento-card col-span-1 md:col-span-12 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[250px] md:min-h-[350px] cursor-pointer"
+        >
+          {/* Micro-Details Layer */}
+          <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className="micro-target absolute top-8 left-8 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
+              <div className="w-[1px] h-full bg-white/40"></div>
+              <div className="absolute w-full h-[1px] bg-white/40"></div>
+            </div>
+            <div className="micro-target absolute top-8 right-8 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
+              <div className="w-[1px] h-full bg-white/40"></div>
+              <div className="absolute w-full h-[1px] bg-white/40"></div>
+            </div>
+            <div className="absolute bottom-8 left-8 w-3 h-3 border-b border-l border-white/40"></div>
+            <div className="absolute bottom-8 right-8 w-3 h-3 border-b border-r border-white/40"></div>
+          </div>
+
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdA_7fUucq2AhDTsyOOVxee_NIBXANNoOJXwqkhdOfFE_I_ajqjfrGFADaUt1qOFuC-bQcVXf8ez82MiDq9ru9Sio3f4PPGbn7niHY38kIlX7QrOcu_TT_H3UuzP7NolFmo3pVtLlYdoHlf7RfYTIRkrUi24bFW_V4avyqva-EvzwxbIgWjJTyOvA7UyrpGrS2RXuANC2l2PiMdRdqOsndSKuingWaJR06YRsDtszKnwZuQi-QDis4iQ=s1600"
+            alt="Stationery Printing"
+            className="editorial-img absolute inset-0 w-full h-full object-cover z-0 opacity-90"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#000000]/90 via-[#000000]/40 to-transparent z-10 pointer-events-none" />
+
+          <div className="editorial-content relative z-20 p-6 md:p-10 flex flex-col w-full text-white max-w-2xl">
+            <div className="flex justify-between items-end w-full mb-1">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] font-bold mb-2 block">
+                06
+              </span>
+              <span className="editorial-arrow text-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light text-[#ff5c00]">
+                ↗
+              </span>
+            </div>
+            <h2 className="font-sans font-bold text-2xl md:text-4xl uppercase tracking-tighter leading-[0.9] mb-3 md:mb-4">
+              Stationery Printing
+            </h2>
+            <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
+              BUSINESS CARDS / LETTERHEADS / CORPORATE SETS
+            </p>
+          </div>
+        </article>
+      </div>
     </section>
   );
 };

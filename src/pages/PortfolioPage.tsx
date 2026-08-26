@@ -1,53 +1,24 @@
-import React, { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import React from "react";
+import { ShaderBackground } from "../components/ShaderBackground";
 import { PortfolioCardSection } from "../components/PortfolioCardSection";
+import { ContactUs } from "./ContactUs";
+import { Footer } from "../components/Footer";
 import { smoothScrollToId } from "../lib/scroll";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-export const Portfolio: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.from(".portfolio-header span", {
-        y: 100,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 1.2,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        },
-      });
-
-      gsap.from(".portfolio-desc", {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".portfolio-desc",
-          start: "top 85%",
-        },
-      });
-    },
-    { scope: containerRef },
-  );
-
+export const PortfolioPage: React.FC = () => {
   return (
-    <div id="portfolio" ref={containerRef} className="text-[#121212]">
+    <div className="min-h-screen relative isolate">
+      <ShaderBackground />
+
+      {/* Hero Section */}
       <div className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 sm:px-12 max-w-7xl mx-auto overflow-hidden relative -mt-10">
-        <h1 className="portfolio-header text-[clamp(2rem,5vw,4.5rem)] leading-[0.9] font-medium tracking-tight flex flex-wrap justify-center gap-x-4">
+        <h1 className="text-[clamp(2rem,5vw,4.5rem)] leading-[0.9] font-medium tracking-tight flex flex-wrap justify-center gap-x-4 text-[#121212]">
           <span className="block">Selected</span>
           <span className="block font-normal italic font-serif text-[#FF5C00]">
             Portfolios.
           </span>
         </h1>
-        <p className="portfolio-desc mt-8 max-w-xl text-lg text-[#121212]/60 leading-relaxed font-sans font-medium">
+        <p className="mt-8 max-w-xl text-lg text-[#121212]/60 leading-relaxed font-sans font-medium">
           A showcase of our world-class digital experiences, combining striking
           typography with fluid, unexpected motion.
         </p>
@@ -71,8 +42,15 @@ export const Portfolio: React.FC = () => {
         </div>
       </div>
 
-      {/* The actual work: reused as the stacked cards showcase */}
+      {/* Stacked Portfolio Cards */}
       <PortfolioCardSection onBookCall={() => smoothScrollToId("contact")} />
+
+      {/* Contact + Footer */}
+      <ContactUs />
+      <Footer
+        onScrollTop={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        onBookCall={() => smoothScrollToId("contact")}
+      />
     </div>
   );
 };

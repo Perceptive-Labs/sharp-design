@@ -1,71 +1,141 @@
-import React, { useRef } from 'react';
-import { gsap } from 'gsap';
-import { useGSAP } from '@gsap/react';
+import React from "react";
 
 export const Clients: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const clients = [
-    "Arper", "Nomad Goods", "Fieldnotes", "Kavat", "Stripe", "Spotify", "Vercel", "Framer", "Linear"
-  ];
-
-  useGSAP(() => {
-    // 3D Staggered entrance for the grid
-    gsap.from('.client-card', {
-      y: 50,
-      rotationX: -45,
-      opacity: 0,
-      stagger: {
-        amount: 0.8,
-        grid: 'auto',
-        from: 'center'
-      },
-      duration: 1,
-      ease: 'back.out(1.2)'
-    });
-
-    // Marquee animation
-    gsap.to('.marquee-track', {
-      xPercent: -50,
-      repeat: -1,
-      duration: 20,
-      ease: 'none'
-    });
-  }, { scope: containerRef });
+  const row1 = Array.from({ length: 7 }, (_, i) => `/portfolio/logo/${i + 1}.jpg`);
+  const row2 = Array.from({ length: 7 }, (_, i) => `/portfolio/logo/${i + 8}.jpg`);
 
   return (
-    <div id="clients" ref={containerRef} className="min-h-screen pt-32 pb-20 text-[#121212] overflow-hidden">
-      
-      <div className="px-6 sm:px-12 max-w-7xl mx-auto mb-24 text-center">
-        <h1 className="text-[clamp(3rem,7vw,6rem)] leading-[0.9] font-medium tracking-tight mb-6">
-          Trusted by <span className="font-normal italic font-serif text-[#FF5C00]">Visionaries</span>
+    <section
+      id="clients"
+      className="relative w-full min-h-[75vh] md:min-h-screen flex flex-col justify-center md:justify-between text-[#121212] py-16 md:py-0 md:pt-20 md:pb-16 overflow-hidden gap-8 md:gap-0"
+    >
+      {/* Top Header */}
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12">
+        <h1 className="text-[clamp(2.25rem,6vw,5rem)] leading-[0.95] font-medium tracking-tight flex flex-wrap gap-x-4">
+          <span className="block">Trusted by</span>
+          <span className="block font-normal italic font-serif text-[#FF5C00]">
+            Visionaries.
+          </span>
         </h1>
+        <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg md:text-xl text-[#121212]/60 leading-relaxed font-sans font-medium">
+          A partial list of the forward-thinking brands, ambitious startups, and
+          industry leaders we've had the pleasure of partnering with.
+        </p>
       </div>
 
-      {/* GSAP Infinite Marquee */}
-      <div className="relative w-full overflow-hidden flex whitespace-nowrap mb-32 rotate-[-2deg] bg-[#121212] text-[#fbf9ef] py-6">
-        <div className="marquee-track flex gap-12 sm:gap-24 items-center">
-          {[...clients, ...clients].map((client, i) => (
-            <span key={i} className="text-4xl sm:text-6xl font-medium uppercase tracking-wider">{client} <span className="text-[#FF5C00] ml-12 sm:ml-24">*</span></span>
-          ))}
+      {/* Dual Opposing Direction Marquee Bands */}
+      <div className="w-full overflow-hidden mt-6 sm:mt-10 md:mt-auto pt-4 md:pt-10 flex flex-col gap-4 sm:gap-6">
+        {/* Band 1 - Flowing Left */}
+        <div
+          className="relative w-[110%] -ml-[5%] overflow-hidden flex whitespace-nowrap rotate-[-2deg] backdrop-blur-md bg-white/30 border-y border-black/15 py-3 sm:py-5"
+          style={{ willChange: "transform" }}
+        >
+          <div
+            className="flex gap-4 sm:gap-8 items-center shrink-0"
+            style={{
+              animation: "marquee-left 22s linear infinite",
+              willChange: "transform",
+            }}
+          >
+            {row1.map((src, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center shrink-0 w-28 sm:w-40 h-14 sm:h-22 bg-white/80 rounded-xl px-3 py-2 shadow-sm border border-black/5"
+              >
+                <img
+                  src={src}
+                  alt="Client Logo"
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+          <div
+            className="flex gap-4 sm:gap-8 items-center shrink-0 ml-4 sm:ml-8"
+            style={{
+              animation: "marquee-left 22s linear infinite",
+              willChange: "transform",
+            }}
+            aria-hidden="true"
+          >
+            {row1.map((src, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center shrink-0 w-28 sm:w-40 h-14 sm:h-22 bg-white/80 rounded-xl px-3 py-2 shadow-sm border border-black/5"
+              >
+                <img
+                  src={src}
+                  alt=""
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Band 2 - Flowing Right (Opposite Direction) */}
+        <div
+          className="relative w-[110%] -ml-[5%] overflow-hidden flex whitespace-nowrap rotate-[-2deg] backdrop-blur-md bg-white/30 border-y border-black/15 py-3 sm:py-5"
+          style={{ willChange: "transform" }}
+        >
+          <div
+            className="flex gap-4 sm:gap-8 items-center shrink-0"
+            style={{
+              animation: "marquee-right 22s linear infinite",
+              willChange: "transform",
+            }}
+          >
+            {row2.map((src, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center shrink-0 w-28 sm:w-40 h-14 sm:h-22 bg-white/80 rounded-xl px-3 py-2 shadow-sm border border-black/5"
+              >
+                <img
+                  src={src}
+                  alt="Client Logo"
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+          <div
+            className="flex gap-4 sm:gap-8 items-center shrink-0 ml-4 sm:ml-8"
+            style={{
+              animation: "marquee-right 22s linear infinite",
+              willChange: "transform",
+            }}
+            aria-hidden="true"
+          >
+            {row2.map((src, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center shrink-0 w-28 sm:w-40 h-14 sm:h-22 bg-white/80 rounded-xl px-3 py-2 shadow-sm border border-black/5"
+              >
+                <img
+                  src={src}
+                  alt=""
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* 3D Staggered Grid */}
-      <div className="px-6 sm:px-12 max-w-5xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 perspective-1000">
-          {clients.map((client, i) => (
-            <div 
-              key={i} 
-              className="client-card aspect-video border border-black/10 flex items-center justify-center rounded-xl bg-white hover:bg-[#FF5C00] hover:text-white transition-colors duration-500 cursor-pointer group"
-              style={{ transformOrigin: 'center center' }}
-            >
-              <span className="text-xl sm:text-2xl font-medium group-hover:scale-110 transition-transform duration-500">{client}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-    </div>
+      <style>{`
+        @keyframes marquee-left {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-100%, 0, 0); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translate3d(-100%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+      `}</style>
+    </section>
   );
 };
