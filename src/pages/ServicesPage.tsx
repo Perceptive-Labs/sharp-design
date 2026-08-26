@@ -134,22 +134,22 @@ export const ServicesPage: React.FC = () => {
       <ShaderBackground />
 
       {/* ─── HERO ─── */}
-      <section className="min-h-[85vh] flex flex-col justify-center px-6 sm:px-12 max-w-7xl mx-auto pt-28 pb-20">
+      <section className="flex flex-col justify-center px-5 sm:px-12 max-w-7xl mx-auto pt-24 pb-10 sm:pt-36 sm:pb-20">
         <div className="max-w-4xl">
-          <p className="sp-hero-el text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-[#FF5C00] mb-6">
+          <p className="sp-hero-el text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-[#FF5C00] mb-3 sm:mb-6">
             What We Do
           </p>
-          <h1 className="sp-hero-el text-[clamp(4rem,10vw,8rem)] font-black uppercase tracking-tighter leading-[0.85] text-[#121212] mb-6">
+          <h1 className="sp-hero-el text-[clamp(3.5rem,10vw,8rem)] font-black uppercase tracking-tighter leading-[0.85] text-[#121212] mb-4 sm:mb-6">
             Services<span className="text-[#FF5C00]">.</span>
           </h1>
-          <h2 className="sp-hero-el text-[clamp(1.5rem,3vw,2.5rem)] font-medium tracking-tight leading-[1.1] text-[#121212]">
+          <h2 className="sp-hero-el text-[clamp(1.35rem,3vw,2.5rem)] font-medium tracking-tight leading-[1.1] text-[#121212]">
             Precision craft for
             <br />
             <span className="font-normal italic font-serif text-[#FF5C00]">
                print & identity.
             </span>
           </h2>
-          <p className="sp-hero-el mt-8 max-w-xl text-lg text-[#121212]/80 leading-relaxed font-medium">
+          <p className="sp-hero-el mt-4 sm:mt-8 max-w-xl text-base sm:text-lg text-[#121212]/80 leading-relaxed font-medium">
             Six disciplines. One standard. Every deliverable is print-ready,
             brand-consistent, and built to make your audience stop and look.
           </p>
@@ -157,13 +157,13 @@ export const ServicesPage: React.FC = () => {
       </section>
 
       {/* ─── 2×3 SERVICES GRID ─── */}
-      <section className="px-6 sm:px-12 max-w-7xl mx-auto pb-32">
-        <div className="sp-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+      <section className="px-5 sm:px-12 max-w-7xl mx-auto pb-16 sm:pb-32">
+        <div className="sp-grid grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 lg:gap-10">
           {SERVICES.map((service, i) => (
             <div
               id={service.id}
               key={service.number}
-              className="sp-grid-item group flex flex-col p-8 sm:p-10 md:p-14 rounded-[2rem] bg-[#f0eee3] border border-[#121212]/5 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+              className="sp-grid-item group flex flex-col p-6 sm:p-10 md:p-14 rounded-[1.5rem] sm:rounded-[2rem] bg-[#f0eee3] border border-[#121212]/5 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
             >
               {/* Hover Enveloping Layer */}
               <div className="absolute inset-0 bg-[#ee5b05] [clip-path:circle(0%_at_100%_0%)] group-hover:[clip-path:circle(150%_at_100%_0%)] transition-[clip-path] duration-700 ease-out group-hover:duration-[2000ms] group-hover:ease-in-out z-0 pointer-events-none"></div>

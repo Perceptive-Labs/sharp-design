@@ -8,24 +8,24 @@ export const Clients: React.FC = () => {
   return (
     <section
       id="clients"
-      className="relative w-full min-h-[75vh] md:min-h-screen flex flex-col justify-center md:justify-between text-[#121212] py-16 md:py-0 md:pt-20 md:pb-16 overflow-hidden gap-8 md:gap-0"
+      className="relative w-full py-12 sm:py-16 md:min-h-screen md:py-0 md:pt-20 md:pb-16 flex flex-col justify-center md:justify-between text-[#121212] overflow-hidden gap-6 md:gap-0"
     >
       {/* Top Header */}
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12">
-        <h1 className="text-[clamp(2.25rem,6vw,5rem)] leading-[0.95] font-medium tracking-tight flex flex-wrap gap-x-4">
+      <div className="w-full max-w-7xl mx-auto px-5 sm:px-12">
+        <h1 className="text-[clamp(2rem,5.5vw,5rem)] leading-[0.95] font-medium tracking-tight flex flex-wrap gap-x-3 sm:gap-x-4">
           <span className="block">Trusted by</span>
           <span className="block font-normal italic font-serif text-[#FF5C00]">
             Visionaries.
           </span>
         </h1>
-        <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg md:text-xl text-[#121212]/60 leading-relaxed font-sans font-medium">
+        <p className="mt-3 sm:mt-6 max-w-xl text-sm sm:text-lg md:text-xl text-[#121212]/60 leading-relaxed font-sans font-medium">
           A partial list of the forward-thinking brands, ambitious startups, and
           industry leaders we've had the pleasure of partnering with.
         </p>
       </div>
 
       {/* Dual Opposing Direction Marquee Bands */}
-      <div className="w-full overflow-hidden mt-6 sm:mt-10 md:mt-auto pt-4 md:pt-10 flex flex-col gap-4 sm:gap-6">
+      <div className="w-full overflow-hidden mt-4 sm:mt-10 md:mt-auto pt-2 md:pt-10 flex flex-col gap-3 sm:gap-6">
         {/* Band 1 - Flowing Left */}
         <div
           className="relative w-[110%] -ml-[5%] overflow-hidden flex whitespace-nowrap rotate-[-2deg] backdrop-blur-md bg-white/30 border-y border-black/15 py-3 sm:py-5"

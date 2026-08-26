@@ -61,37 +61,37 @@ export const PortfolioGalleryPage: React.FC = () => {
       </button>
 
       {/* Header */}
-      <div className="pt-32 sm:pt-40 pb-12 sm:pb-20 px-6 sm:px-12 max-w-7xl mx-auto text-center font-sans">
+      <div className="pt-20 sm:pt-40 pb-8 sm:pb-16 px-5 sm:px-12 max-w-7xl mx-auto text-center font-sans">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-[clamp(2.5rem,8vw,6rem)] font-black uppercase tracking-tight mb-4 sm:mb-6"
+          className="text-[clamp(2.25rem,8vw,6rem)] font-black uppercase tracking-tight mb-2 sm:mb-6"
         >
           {title}
         </motion.h1>
       </div>
 
-      {/* Masonry Grid */}
-      <div className="px-4 sm:px-8 md:px-12 lg:px-16 pb-20 sm:pb-32 max-w-[1600px] mx-auto">
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 lg:gap-8 space-y-4 sm:space-y-6 lg:space-y-8">
+      {/* Masonry Grid - 2 cols on mobile for rich density */}
+      <div className="px-3.5 sm:px-8 md:px-12 lg:px-16 pb-16 sm:pb-32 max-w-[1600px] mx-auto">
+        <div className="columns-2 sm:columns-2 lg:columns-3 xl:columns-4 gap-2.5 sm:gap-6 lg:gap-8 space-y-2.5 sm:space-y-6 lg:space-y-8">
           {images.map((src, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{
                 duration: 0.6,
-                delay: (i % 4) * 0.1,
+                delay: (i % 4) * 0.08,
                 ease: "easeOut",
               }}
-              className="break-inside-avoid relative overflow-hidden rounded-2xl bg-white/50 border border-[#121212]/5 shadow-sm group cursor-pointer"
+              className="break-inside-avoid relative overflow-hidden rounded-xl sm:rounded-2xl bg-white/70 border border-[#121212]/5 shadow-sm group cursor-pointer p-2 sm:p-4"
             >
               <img
                 src={src}
                 alt={`Portfolio ${i + 1}`}
-                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                 loading="lazy"
               />
             </motion.div>

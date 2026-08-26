@@ -41,21 +41,21 @@ export const ContactUs: React.FC = () => {
     <div
       id="contact"
       ref={containerRef}
-      className="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 text-[#121212]"
+      className="py-14 sm:py-20 md:min-h-screen md:py-0 md:pt-24 md:pb-12 flex items-center justify-center px-5 sm:px-6 text-[#121212]"
     >
-      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
         <div>
-          <h1 className="contact-title text-[clamp(2rem,5vw,4rem)] leading-[1] font-medium tracking-tight text-[#121212] mb-6">
+          <h1 className="contact-title text-[clamp(2rem,5vw,4rem)] leading-[1] font-medium tracking-tight text-[#121212] mb-4 sm:mb-6">
             Let's build <br />
             <span className="font-normal italic font-serif text-[#FF5C00]">
               something.
             </span>
           </h1>
-          <p className="contact-title text-[#121212]/60 text-lg max-w-md">
+          <p className="contact-title text-[#121212]/60 text-base sm:text-lg max-w-md">
             Whether you have a fully formed project or just an idea, we'd love
             to collaborate with you.
           </p>
-          <div className="pt-8 sm:pt-12">
+          <div className="pt-6 sm:pt-12">
             <a
               href="https://wa.me/919227953032?text=Hello!%20Got%20your%20reference%20from%20Sharp%20Design%20Website..."
               target="_blank"

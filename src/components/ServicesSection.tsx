@@ -269,10 +269,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
     <section
       id="services"
       ref={containerRef}
-      className="relative w-full bg-transparent text-white pt-12 sm:pt-16 md:pt-20 pb-20 md:pb-32 px-4 sm:px-8 md:px-16 overflow-hidden"
+      className="relative w-full bg-transparent text-white pt-10 sm:pt-16 md:pt-20 pb-12 sm:pb-20 md:pb-32 px-4 sm:px-8 md:px-16 overflow-hidden"
     >
       {/* Top Header Editorial Block */}
-      <div className="max-w-7xl mx-auto flex flex-col items-start mb-8 sm:mb-12 md:mb-14">
+      <div className="max-w-7xl mx-auto flex flex-col items-start mb-6 sm:mb-12 md:mb-14">
         <h1
           className="service-header-el text-[clamp(2rem,5vw,4.5rem)] uppercase tracking-tight leading-none text-[#2B2A29]"
           style={{ fontFamily: '"Syne", sans-serif', fontWeight: 800 }}
@@ -285,20 +285,20 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         >
           Services <span className="text-[#FF5C00]">.</span>
         </h2>
-        <p className="service-header-el mt-4 sm:mt-6 max-w-2xl text-[clamp(1rem,2.5vw,1.5rem)] text-[#2B2A29] font-medium leading-relaxed tracking-tight">
+        <p className="service-header-el mt-3 sm:mt-6 max-w-2xl text-[clamp(0.95rem,2.2vw,1.5rem)] text-[#2B2A29] font-medium leading-relaxed tracking-tight">
           We create innovative graphic designs, bespoke packaging, and
           high-precision print solutions that captivate your audience.
         </p>
       </div>
 
       {/* ================= EDITORIAL ART-DIRECTION GRID ================= */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 auto-rows-[minmax(200px,_auto)]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-6 md:gap-8 auto-rows-[minmax(180px,_auto)]">
         {/* 1. Top Left: Brochure (span 7) */}
         <article
           onClick={() => navigate(`/services#${service1_Brochure.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[250px] md:min-h-[300px] cursor-pointer"
+          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[210px] sm:min-h-[250px] md:min-h-[300px] cursor-pointer"
         >
           {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -316,9 +316,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10 pointer-events-none" />
 
-          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+          <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
             <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
                 01
               </span>
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
@@ -334,12 +334,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </div>
         </article>
 
-        {/* 2. Top Right: Logo Designing (span 5) */}
+        {/* 2. Top Right: Logo (span 5) */}
         <article
           onClick={() => navigate(`/services#${service3_Logo.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="bento-card col-span-1 md:col-span-5 bg-[#271812] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[250px] md:min-h-[300px] cursor-pointer"
+          className="bento-card col-span-1 md:col-span-5 bg-[#271812] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[210px] sm:min-h-[250px] md:min-h-[300px] cursor-pointer"
         >
           {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -357,16 +357,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#120a06]/95 via-[#120a06]/40 to-transparent z-10 pointer-events-none" />
 
-          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+          <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
             <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
                 02
               </span>
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
                 ↗
               </span>
             </div>
-            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-1 sm:mb-2 md:mb-3">
               Logo Design
             </h2>
             <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
@@ -380,7 +380,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           onClick={() => navigate(`/services#${service2_Packaging.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="bento-card col-span-1 md:col-span-5 md:row-span-2 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[400px] md:min-h-[500px] cursor-pointer"
+          className="bento-card col-span-1 md:col-span-5 md:row-span-2 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[260px] sm:min-h-[400px] md:min-h-[500px] cursor-pointer"
         >
           {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -401,16 +401,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none" />
 
-          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+          <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
             <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] mb-2 block font-bold">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] mb-1 sm:mb-2 block font-bold">
                 03
               </span>
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light text-[#ff5c00]">
                 ↗
               </span>
             </div>
-            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-1 sm:mb-2 md:mb-3">
               Packaging Design
             </h2>
             <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
@@ -424,7 +424,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           onClick={() => navigate(`/services#${service6_GiftCover.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px] cursor-pointer"
+          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[180px] sm:min-h-[220px] md:min-h-[250px] cursor-pointer"
         >
           {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -439,16 +439,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none" />
 
-          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+          <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
             <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
                 04
               </span>
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
                 ↗
               </span>
             </div>
-            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-1 sm:mb-2 md:mb-3">
               Gift Cover Design
             </h2>
             <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
@@ -462,7 +462,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           onClick={() => navigate(`/services#${service4_Booklet.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[200px] md:min-h-[250px] cursor-pointer"
+          className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[180px] sm:min-h-[220px] md:min-h-[250px] cursor-pointer"
         >
           {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -477,16 +477,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#120a06]/95 via-[#120a06]/40 to-transparent z-10 pointer-events-none" />
 
-          <div className="editorial-content relative z-20 p-6 md:p-8 flex flex-col w-full text-white">
+          <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-8 flex flex-col w-full text-white">
             <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-2 block">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50 mb-1 sm:mb-2 block">
                 05
               </span>
               <span className="editorial-arrow text-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light">
                 ↗
               </span>
             </div>
-            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-2 md:mb-3">
+            <h2 className="font-sans font-bold text-xl md:text-3xl uppercase tracking-tighter leading-none mb-1 sm:mb-2 md:mb-3">
               Booklet Design
             </h2>
             <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">
@@ -500,7 +500,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           onClick={() => navigate(`/services#${service5_Stationery.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="bento-card col-span-1 md:col-span-12 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[250px] md:min-h-[350px] cursor-pointer"
+          className="bento-card col-span-1 md:col-span-12 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[220px] sm:min-h-[280px] md:min-h-[350px] cursor-pointer"
         >
           {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -523,16 +523,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#000000]/90 via-[#000000]/40 to-transparent z-10 pointer-events-none" />
 
-          <div className="editorial-content relative z-20 p-6 md:p-10 flex flex-col w-full text-white max-w-2xl">
+          <div className="editorial-content relative z-20 p-4 sm:p-6 md:p-10 flex flex-col w-full text-white max-w-2xl">
             <div className="flex justify-between items-end w-full mb-1">
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] font-bold mb-2 block">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#ff5c00] font-bold mb-1 sm:mb-2 block">
                 06
               </span>
               <span className="editorial-arrow text-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 font-light text-[#ff5c00]">
                 ↗
               </span>
             </div>
-            <h2 className="font-sans font-bold text-2xl md:text-4xl uppercase tracking-tighter leading-[0.9] mb-3 md:mb-4">
+            <h2 className="font-sans font-bold text-xl sm:text-2xl md:text-4xl uppercase tracking-tighter leading-[0.9] mb-2 sm:mb-3 md:mb-4">
               Stationery Printing
             </h2>
             <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/40">

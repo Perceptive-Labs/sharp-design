@@ -11,14 +11,14 @@ export const PortfolioPage: React.FC = () => {
       <ShaderBackground />
 
       {/* Hero Section */}
-      <div className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 sm:px-12 max-w-7xl mx-auto overflow-hidden relative -mt-10">
-        <h1 className="text-[clamp(2rem,5vw,4.5rem)] leading-[0.9] font-medium tracking-tight flex flex-wrap justify-center gap-x-4 text-[#121212]">
+      <div className="min-h-[55vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center px-5 sm:px-12 max-w-7xl mx-auto overflow-hidden relative pt-24 pb-8 sm:pt-0 sm:pb-0 sm:-mt-10">
+        <h1 className="text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.9] font-medium tracking-tight flex flex-wrap justify-center gap-x-3 sm:gap-x-4 text-[#121212]">
           <span className="block">Selected</span>
           <span className="block font-normal italic font-serif text-[#FF5C00]">
             Portfolios.
           </span>
         </h1>
-        <p className="mt-8 max-w-xl text-lg text-[#121212]/60 leading-relaxed font-sans font-medium">
+        <p className="mt-4 sm:mt-8 max-w-xl text-base sm:text-lg text-[#121212]/60 leading-relaxed font-sans font-medium">
           A showcase of our world-class digital experiences, combining striking
           typography with fluid, unexpected motion.
         </p>
