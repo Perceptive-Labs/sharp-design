@@ -174,9 +174,7 @@ export const ServicesPage: React.FC = () => {
               <div
                 id={service.id}
                 key={service.id}
-                className={`sp-grid-item group flex flex-col rounded-2xl sm:rounded-[2rem] ${
-                  i % 2 === 0 ? "bg-[#f0eee3]" : "bg-white"
-                } border border-[#121212]/5 shadow-sm sm:hover:shadow-xl transition-all duration-500 sm:hover:-translate-y-2 relative overflow-hidden`}
+                className="sp-grid-item group flex flex-col rounded-2xl sm:rounded-[2rem] bg-white border border-[#121212]/5 shadow-sm sm:hover:shadow-xl transition-all duration-500 sm:hover:-translate-y-2 relative overflow-hidden"
               >
                 {/* Hover Enveloping Layer (desktop only) */}
                 <div className="absolute inset-0 bg-[#ee5b05] [clip-path:circle(0%_at_100%_0%)] group-hover:[clip-path:circle(150%_at_100%_0%)] transition-[clip-path] duration-700 ease-out group-hover:duration-[2000ms] group-hover:ease-in-out z-0 pointer-events-none hidden sm:block"></div>
