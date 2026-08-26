@@ -175,9 +175,9 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
     <section
       id="works"
       ref={containerRef}
-      className="relative w-full h-[100dvh] min-h-[100dvh] flex items-center justify-center px-4 sm:px-8 md:px-12 overflow-hidden"
+      className="relative w-full h-[100dvh] min-h-[100dvh] flex items-center justify-center px-4 sm:px-6 md:px-8 overflow-hidden"
     >
-      <div className="max-w-xs sm:max-w-2xl md:max-w-7xl mx-auto relative h-[48vh] min-h-[320px] max-h-[400px] sm:h-[65vh] sm:min-h-[460px] sm:max-h-[700px] w-full">
+      <div className="max-w-[320px] sm:max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto relative h-[48vh] min-h-[320px] max-h-[400px] sm:h-[62vh] sm:min-h-[440px] sm:max-h-[560px] w-full">
         {STACKED_SERVICES.map((card, i) => {
           const images = (CATEGORY_IMAGES[card.id] || []).slice(0, 3);
           const hasImages = images.length > 0;
