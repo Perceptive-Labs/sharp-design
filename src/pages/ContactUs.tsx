@@ -192,7 +192,7 @@ export const ContactUs: React.FC = () => {
                 src={GOOGLE_MAPS_EMBED}
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{ border: "0.5px solid black", borderRadius: "inherit" }}
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -209,7 +209,7 @@ export const ContactUs: React.FC = () => {
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
               <div className="flex items-center gap-1.5 text-xs font-mono text-[#121212]/60">
                 <Clock className="w-3.5 h-3.5 text-[#FF5C00]" />
-                <span>Mon–Sat · 10:00 AM – 7:30 PM IST</span>
+                <span className="font-bold text-[#121212]/90 font-sans text-lg" >Mon–Sat · 10:00 AM – 7:30 PM IST</span>
               </div>
 
               <div className="flex items-center gap-2">
