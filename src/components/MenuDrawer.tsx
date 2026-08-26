@@ -78,12 +78,12 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id, item.path)}
-              className="group flex items-center gap-4 text-left cursor-pointer focus:outline-none w-full py-1 sm:py-1.5"
+              className="group flex items-center gap-3 sm:gap-4 text-left cursor-pointer focus:outline-none w-full py-1 sm:py-1.5 overflow-hidden"
             >
-              <span className="text-[clamp(1.75rem,8vw,2.5rem)] font-black tracking-tight text-[#8c8882] group-hover:text-white transition-all duration-300 group-hover:translate-x-2 font-sans uppercase">
+              <span className="text-[clamp(1.5rem,6.5vw,2.5rem)] font-black tracking-tight text-[#8c8882] group-hover:text-white transition-all duration-300 group-hover:translate-x-2 font-sans uppercase whitespace-nowrap shrink-0">
                 {item.label}
               </span>
-              <span className="text-xs sm:text-sm font-mono text-[#FF5C00] opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-400 ease-out whitespace-nowrap">
+              <span className="text-[11px] sm:text-sm font-mono text-[#FF5C00] opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-400 ease-out whitespace-nowrap hidden xs:inline">
                 — {item.tip}
               </span>
             </button>

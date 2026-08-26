@@ -11,7 +11,6 @@ import { CATEGORY_IMAGES } from "../pages/PortfolioGalleryPage";
 
 export interface ServiceCardData {
   id: string;
-  number: string;
   title: string;
   description: string;
   bgColor: string;
@@ -22,7 +21,6 @@ export interface ServiceCardData {
 const STACKED_SERVICES: ServiceCardData[] = [
   {
     id: "brochure-designs",
-    number: "(01)",
     title: "Brochure Designs",
     description:
       "We pair evocative typography with multi-fold precision and vibrant color depth. Our editorial layouts communicate with high authority.",
@@ -32,7 +30,6 @@ const STACKED_SERVICES: ServiceCardData[] = [
   },
   {
     id: "packaging-prints",
-    number: "(02)",
     title: "Packaging Prints",
     description:
       "Packaging drives the unboxing experience. We engineer bespoke dielines, tactile material finishes, metallic foils, and spot UV treatments.",
@@ -42,7 +39,6 @@ const STACKED_SERVICES: ServiceCardData[] = [
   },
   {
     id: "logos",
-    number: "(03)",
     title: "Logos",
     description:
       "We build visual systems that work across acquisition and product. Each sprint ships a robust logo and pragmatic brand guidelines.",
@@ -52,7 +48,6 @@ const STACKED_SERVICES: ServiceCardData[] = [
   },
   {
     id: "booklet-prints",
-    number: "(04)",
     title: "Booklet Prints",
     description:
       "Distributing corporate profiles or showcasing fashion lookbooks, our multipage layouts ensure your content commands respect and engagement.",
@@ -62,7 +57,6 @@ const STACKED_SERVICES: ServiceCardData[] = [
   },
   {
     id: "stationery-prints",
-    number: "(05)",
     title: "Stationery Prints",
     description:
       "Executive letterheads, edge-painted 450gsm cards, and foil-blocked envelopes. We outfit your staff with materials that convey absolute prestige.",
@@ -72,7 +66,6 @@ const STACKED_SERVICES: ServiceCardData[] = [
   },
   {
     id: "gift-cover-designs",
-    number: "(06)",
     title: "Gift Cover Designs",
     description:
       "Custom wrapping paper, exclusive sleeves, and luxury ribbons designed to make the unboxing moment truly unforgettable.",
@@ -197,9 +190,6 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
               >
                 <div className="flex flex-col flex-none md:flex-1 max-w-sm min-w-0">
                   <div className="pr-1 sm:pr-2">
-                    <span className="block font-mono text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest opacity-60 mb-1">
-                      {card.number}
-                    </span>
                     <h3 className="text-[clamp(1.35rem,2.5vw,2.25rem)] font-black uppercase tracking-tight leading-[0.95]">
                       {card.title}
                     </h3>

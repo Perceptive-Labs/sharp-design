@@ -55,7 +55,7 @@ export const AboutSection: React.FC = () => {
           {/* Quick Pillar Tags for Rich Mobile Presence */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#121212]/5 text-[11px] sm:text-xs font-mono font-semibold tracking-wider text-[#121212]/80 uppercase">
-              <span className="text-[#FF5C00]">✦</span> 10+ Yrs Craft
+              <span className="text-[#FF5C00]">✦</span> 20+ Yrs Craft
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#121212]/5 text-[11px] sm:text-xs font-mono font-semibold tracking-wider text-[#121212]/80 uppercase">
               <span className="text-[#FF5C00]">✦</span> 500+ Deliverables

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   Shader,
@@ -68,6 +68,7 @@ const DebugOverlay: React.FC<{ info: DebugInfo }> = ({ info }) => (
 export const ShaderBackground: React.FC = () => {
   const [unavailable, setUnavailable] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [debugInfo, setDebugInfo] = useState<DebugInfo>({
     isSecureContext: true,
     hasNavigatorGPU: false,
@@ -93,6 +94,61 @@ export const ShaderBackground: React.FC = () => {
         setDebugInfo((prev) => ({ ...prev, webgpuSupported: supported }))
       )
       .catch(() => setDebugInfo((prev) => ({ ...prev, webgpuSupported: false })));
+
+    // Global touch and hover tracking for mobile & desktop reactivity
+    const handleTouchOrPointer = (e: TouchEvent | PointerEvent | MouseEvent) => {
+      let clientX = 0;
+      let clientY = 0;
+
+      if ("touches" in e && e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if ("clientX" in e) {
+        clientX = (e as MouseEvent).clientX;
+        clientY = (e as MouseEvent).clientY;
+      } else {
+        return;
+      }
+
+      const container = wrapperRef.current;
+      if (!container) return;
+
+      const canvas = container.querySelector("canvas");
+      if (!canvas) return;
+
+      // Dispatch synthetic pointer and mouse move events to canvas
+      try {
+        canvas.dispatchEvent(
+          new PointerEvent("pointermove", {
+            clientX,
+            clientY,
+            bubbles: true,
+            cancelable: true,
+            pointerType: "touches" in e ? "touch" : "mouse",
+          })
+        );
+        canvas.dispatchEvent(
+          new MouseEvent("mousemove", {
+            clientX,
+            clientY,
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      } catch (_) {
+        // Fallback for browsers with strict synthetic event restrictions
+      }
+    };
+
+    window.addEventListener("pointermove", handleTouchOrPointer, { passive: true });
+    window.addEventListener("touchstart", handleTouchOrPointer, { passive: true });
+    window.addEventListener("touchmove", handleTouchOrPointer, { passive: true });
+
+    return () => {
+      window.removeEventListener("pointermove", handleTouchOrPointer);
+      window.removeEventListener("touchstart", handleTouchOrPointer);
+      window.removeEventListener("touchmove", handleTouchOrPointer);
+    };
   }, []);
 
   const renderScale = useMemo(() => {
@@ -104,7 +160,11 @@ export const ShaderBackground: React.FC = () => {
   if (!mounted) return null;
 
   const content = (
-    <div className="fixed inset-0 w-full h-full overflow-hidden" style={{ zIndex: -1 }}>
+    <div
+      ref={wrapperRef}
+      className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none"
+      style={{ zIndex: -1 }}
+    >
       {unavailable ? (
         <StaticFallback />
       ) : (

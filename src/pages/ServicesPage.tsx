@@ -162,20 +162,15 @@ export const ServicesPage: React.FC = () => {
           {SERVICES.map((service, i) => (
             <div
               id={service.id}
-              key={service.number}
+              key={service.id}
               className="sp-grid-item group flex flex-col p-6 sm:p-10 md:p-14 rounded-[1.5rem] sm:rounded-[2rem] bg-[#f0eee3] border border-[#121212]/5 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
             >
               {/* Hover Enveloping Layer */}
               <div className="absolute inset-0 bg-[#ee5b05] [clip-path:circle(0%_at_100%_0%)] group-hover:[clip-path:circle(150%_at_100%_0%)] transition-[clip-path] duration-700 ease-out group-hover:duration-[2000ms] group-hover:ease-in-out z-0 pointer-events-none"></div>
 
               <div className="relative z-10 flex flex-col h-full pointer-events-none">
-                {/* Number */}
-                <span className="text-[11px] font-mono font-bold text-[#FF5C00] group-hover:text-white transition-colors duration-500 group-hover:duration-1000 tracking-widest">
-                  ({service.number})
-                </span>
-
                 {/* Title */}
-                <h2 className="mt-4 text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight text-[#121212] leading-[1.1] group-hover:text-white transition-colors duration-500 group-hover:duration-1000">
+                <h2 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight text-[#121212] leading-[1.1] group-hover:text-white transition-colors duration-500 group-hover:duration-1000">
                   {service.title}
                 </h2>
 
