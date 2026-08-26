@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { X, CheckCircle2, Printer, ArrowRight } from "lucide-react";
+import { X, CheckCircle2, Printer, ArrowRight, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -25,7 +25,7 @@ export const COMPANY_SERVICES: ServiceDetail[] = [
   {
     id: "brochure-design",
     title: "Brochure Design",
-    category: "Graphic Design",
+    category: "Print & Packaging",
     tagline:
       "Captivating visual storytelling through drawings & vibrant colors",
     description:
@@ -172,10 +172,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onBookCall,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   const { contextSafe } = useGSAP(
     () => {
-      // GSAP Reveal for Header
       gsap.fromTo(
         ".service-header-el",
         { opacity: 0, y: 30 },
@@ -192,7 +192,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         },
       );
 
-      // GSAP Reveal for Bento Grid Cards using batch
       ScrollTrigger.batch(".bento-card", {
         onEnter: (elements) => {
           gsap.fromTo(
@@ -204,10 +203,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               stagger: 0.1,
               duration: 0.8,
               ease: "power3.out",
-              overwrite: true,
+              overwrite: "auto",
             },
           );
         },
+        once: true,
         start: "top 85%",
       });
     },
@@ -221,8 +221,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
     const arrow = card.querySelector(".editorial-arrow");
     const microTarget = card.querySelector(".micro-target");
 
-    gsap.to(card, { y: -2, duration: 1, ease: "power3.out" });
-    if (img) gsap.to(img, { scale: 1.03, duration: 1.5, ease: "power2.out" });
+    gsap.to(card, { y: -6, duration: 0.8, ease: "power3.out" });
+    if (img) gsap.to(img, { scale: 1.05, duration: 1.2, ease: "power2.out" });
     if (content) gsap.to(content, { y: -4, duration: 0.8, ease: "power2.out" });
     if (arrow)
       gsap.to(arrow, { x: 3, y: -3, duration: 0.6, ease: "power3.out" });
@@ -269,38 +269,89 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
     <section
       id="services"
       ref={containerRef}
-      className="relative w-full bg-transparent text-white pt-10 sm:pt-16 md:pt-20 pb-12 sm:pb-20 md:pb-32 px-4 sm:px-8 md:px-16 overflow-hidden"
+      className="relative w-full bg-transparent text-white py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-16 overflow-hidden"
     >
-      {/* Top Header Editorial Block */}
       <div className="max-w-7xl mx-auto flex flex-col items-start mb-6 sm:mb-12 md:mb-14">
-        <h1
-          className="service-header-el text-[clamp(2rem,5vw,4.5rem)] uppercase tracking-tight leading-none text-[#2B2A29]"
-          style={{ fontFamily: '"Syne", sans-serif', fontWeight: 800 }}
-        >
-          Our
-        </h1>
-        <h2
-          className="service-header-el text-[clamp(2rem,5vw,4.5rem)] uppercase tracking-tight leading-none text-[#2B2A29]"
-          style={{ fontFamily: '"Syne", sans-serif', fontWeight: 800 }}
-        >
-          Services <span className="text-[#FF5C00]">.</span>
+        <h2 className="service-header-el text-[clamp(2rem,5vw,4.5rem)] font-black uppercase tracking-[-0.04em] text-[#121212] font-sans leading-none">
+          Our Services <span className="text-[#FF5C00]">.</span>
         </h2>
-        <p className="service-header-el mt-3 sm:mt-6 max-w-2xl text-[clamp(0.95rem,2.2vw,1.5rem)] text-[#2B2A29] font-medium leading-relaxed tracking-tight">
+        <p className="service-header-el mt-4 sm:mt-6 max-w-4xl text-[clamp(1.2rem,3.5vw,2.5rem)] font-medium tracking-[-0.025em] leading-[1.3] font-sans text-[#121212]">
           We create innovative graphic designs, bespoke packaging, and
           high-precision print solutions that captivate your audience.
         </p>
       </div>
 
-      {/* ================= EDITORIAL ART-DIRECTION GRID ================= */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-6 md:gap-8 auto-rows-[minmax(180px,_auto)]">
-        {/* 1. Top Left: Brochure (span 7) */}
+      {/* ─── MOBILE: Compact Accordion Cards ─── */}
+      <div className="max-w-7xl mx-auto md:hidden flex flex-col gap-2.5">
+        {[
+          { service: service1_Brochure, label: "Brochure Design", mono: "PRINT / EDITORIAL / BRANDING" },
+          { service: service3_Logo, label: "Logo Design", mono: "IDENTITY / TYPOGRAPHY / MARKS" },
+          { service: service2_Packaging, label: "Packaging Design", mono: "3D STRUCTURAL / RETAIL / BESPOKE" },
+          { service: service6_GiftCover, label: "Gift Cover Design", mono: "LUXURY / FOIL STAMPING / PREMIUM" },
+          { service: service4_Booklet, label: "Booklet Design", mono: "LAYOUT / BINDING / MULTI-PAGE" },
+          { service: service5_Stationery, label: "Stationery Printing", mono: "BUSINESS CARDS / LETTERHEADS / CORPORATE SETS" },
+        ].map((item, i) => {
+          const isExpanded = expandedCard === i;
+          return (
+            <div
+              key={item.service.id}
+              className="bg-[#121212] rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
+            >
+              <button
+                type="button"
+                onClick={() => setExpandedCard(isExpanded ? null : i)}
+                className="w-full flex items-center justify-between px-5 py-4 cursor-pointer text-left"
+              >
+                <h3 className="text-base font-bold tracking-tight text-white leading-tight">
+                  {item.label}
+                </h3>
+                <ChevronDown
+                  className={`w-5 h-5 text-white/40 shrink-0 ml-3 transition-transform duration-400 ease-out ${
+                    isExpanded ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              <div
+                className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  maxHeight: isExpanded ? "400px" : "0px",
+                  opacity: isExpanded ? 1 : 0,
+                }}
+              >
+                <div className="px-5 pb-5">
+                  <p className="text-sm text-white/60 leading-relaxed font-medium mb-3">
+                    {item.service.tagline}
+                  </p>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/30 mb-4">
+                    {item.mono}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/services#${item.service.id}`);
+                    }}
+                    className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-mono text-[10px] font-bold uppercase tracking-[0.15em] bg-[#FF5C00] text-white cursor-pointer shadow-sm active:scale-95 transition-transform"
+                  >
+                    <span>View Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ─── DESKTOP: Full Bento Grid ─── */}
+      <div className="max-w-7xl mx-auto hidden md:grid grid-cols-12 gap-3.5 sm:gap-6 md:gap-8 auto-rows-[minmax(180px,_auto)]">
         <article
           onClick={() => navigate(`/services#${service1_Brochure.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[210px] sm:min-h-[250px] md:min-h-[300px] cursor-pointer"
         >
-          {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             <div className="micro-target absolute top-6 left-6 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
               <div className="w-[1px] h-full bg-white/40"></div>
@@ -331,14 +382,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </div>
         </article>
 
-        {/* 2. Top Right: Logo (span 5) */}
         <article
           onClick={() => navigate(`/services#${service3_Logo.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="bento-card col-span-1 md:col-span-5 bg-[#271812] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[210px] sm:min-h-[250px] md:min-h-[300px] cursor-pointer"
         >
-          {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             <div className="micro-target absolute top-6 right-6 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
               <div className="w-[1px] h-full bg-white/40"></div>
@@ -369,14 +418,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </div>
         </article>
 
-        {/* 3. Row 2 Left (Tall): Packaging Designing (span 5, row-span-2) */}
         <article
           onClick={() => navigate(`/services#${service2_Packaging.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="bento-card col-span-1 md:col-span-5 md:row-span-2 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[260px] sm:min-h-[400px] md:min-h-[500px] cursor-pointer"
         >
-          {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             <div className="micro-target absolute top-6 left-6 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
               <div className="w-[1px] h-full bg-white/40"></div>
@@ -410,14 +457,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </div>
         </article>
 
-        {/* 4. Row 2 Right: Gift Cover (span 7) */}
         <article
           onClick={() => navigate(`/services#${service6_GiftCover.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[180px] sm:min-h-[220px] md:min-h-[250px] cursor-pointer"
         >
-          {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             <div className="absolute top-6 left-6 w-3 h-3 border-t border-l border-white/40"></div>
             <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-white/40"></div>
@@ -445,14 +490,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </div>
         </article>
 
-        {/* 5. Row 3 Right: Booklet Printing (span 7) */}
         <article
           onClick={() => navigate(`/services#${service4_Booklet.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="bento-card col-span-1 md:col-span-7 bg-[#121212] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[180px] sm:min-h-[220px] md:min-h-[250px] cursor-pointer"
         >
-          {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             <div className="absolute top-6 left-6 w-3 h-3 border-t border-l border-white/40"></div>
             <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-white/40"></div>
@@ -480,14 +523,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </div>
         </article>
 
-        {/* 6. Row 4: Stationery Printing (span 12, full-width) */}
         <article
           onClick={() => navigate(`/services#${service5_Stationery.id}`)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="bento-card col-span-1 md:col-span-12 bg-[#ff5c00] border border-white/10 rounded-sm group relative overflow-hidden flex flex-col justify-end min-h-[220px] sm:min-h-[280px] md:min-h-[350px] cursor-pointer"
         >
-          {/* Micro-Details Layer */}
           <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             <div className="micro-target absolute top-8 left-8 w-4 h-4 border border-white/40 rounded-full flex items-center justify-center">
               <div className="w-[1px] h-full bg-white/40"></div>

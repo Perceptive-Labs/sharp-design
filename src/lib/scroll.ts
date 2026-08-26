@@ -15,7 +15,8 @@ export const smoothScrollToId = (id: string) => {
   const absoluteElementTop = rect.top + window.scrollY;
   const viewportHeight = window.innerHeight;
 
-  let targetY = absoluteElementTop;
+  const headerOffset = 90;
+  let targetY = absoluteElementTop - headerOffset;
 
   if (id === "hero") {
     targetY = 0;

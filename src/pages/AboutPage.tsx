@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { Footer } from "../components/Footer";
+import { BackButton } from "../components/BackButton";
 import { ShaderBackground } from "../components/ShaderBackground";
 import { ContactUs } from "./ContactUs";
 import { smoothScrollToId } from "../lib/scroll";
@@ -11,75 +12,87 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const PILLARS = [
+  {
+    id: "strategy",
+    title: "Strategy Before Aesthetics",
+    description:
+      "We do not decorate brands based on fleeting trends. Every identity, typographic system, and colorway is engineered with strategic intent to endure and build lasting equity.",
+    tags: ["Brand Architecture", "Purpose-Driven", "Visual Strategy"],
+    actionText: "Explore Services",
+    actionPath: "/services",
+  },
+  {
+    id: "clarity",
+    title: "Clarity Over Clutter",
+    description:
+      "Print and brand communication stripped of unnecessary noise. We distill complex propositions into razor-sharp, unforgettable visual hierarchies that command attention.",
+    tags: ["High-Impact", "Zero Clutter", "Editorial Focus"],
+    actionText: "View Portfolio",
+    actionPath: "/portfolio",
+  },
+  {
+    id: "consistency",
+    title: "Consistency Builds Trust",
+    description:
+      "Two decades of print mastery. From fine-grain tactile finishes to cohesive digital assets, we ensure flawless brand fidelity across every customer touchpoint.",
+    tags: ["20+ Yrs Mastery", "Precision Print", "Brand Fidelity"],
+    actionText: "Explore Services",
+    actionPath: "/services",
+  },
+  {
+    id: "execution",
+    title: "End-to-End Craft",
+    description:
+      "From early-stage conceptualization to physical die-cutting, foil stamping, and final production — we oversee the entire creative pipeline under one roof.",
+    tags: ["Design & Print", "Turnkey Craft", "Tactile Finishes"],
+    actionText: "Start a Project",
+    actionPath: "/contact",
+  },
+];
+
 export const AboutPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   useGSAP(
     () => {
-      // Hero Reveal
-      gsap.from(".about-hero-el", {
-        y: 60,
-        opacity: 0,
-        duration: 1.4,
-        stagger: 0.15,
-        ease: "power4.out",
-        delay: 0.2,
-      });
-
-      // Pixel Hook Reveal
-      gsap.from(".pixel-hook-el", {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".pixel-hook-section",
-          start: "top 80%",
-        },
-      });
-
-      // Philosophy/Who We Are Section
-      gsap.from(".philosophy-el", {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".philosophy-section",
-          start: "top 80%",
-        },
-      });
-
-      // Values Section
-      gsap.from(".value-card", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".values-section",
-          start: "top 75%",
-        },
-      });
-
-      // Services Sections
-      gsap.utils.toArray(".service-section").forEach((section: any) => {
-        gsap.from(section.querySelectorAll(".service-el"), {
-          y: 40,
-          opacity: 0,
+      // Hero Elements Reveal
+      gsap.fromTo(
+        ".about-hero-el",
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
           duration: 1,
           stagger: 0.1,
           ease: "power3.out",
+          delay: 0.1,
+          clearProps: "all",
+        },
+      );
+
+      // Cards Stagger on Scroll
+      gsap.fromTo(
+        ".about-card-item",
+        { y: 35, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          clearProps: "all",
           scrollTrigger: {
-            trigger: section,
-            start: "top 75%",
+            trigger: ".about-cards-grid",
+            start: "top 85%",
+            once: true,
           },
-        });
-      });
+        },
+      );
+
+      ScrollTrigger.refresh();
     },
     { scope: containerRef },
   );
@@ -91,253 +104,153 @@ export const AboutPage: React.FC = () => {
     >
       <ShaderBackground />
 
-      <main className="max-w-7xl mx-auto px-5 sm:px-10 md:px-16 lg:px-24">
-        {/* HERO SECTION */}
-        <section className="flex flex-col justify-center items-center text-center pt-14 pb-12 sm:pt-36 sm:pb-24">
-          <div className="max-w-4xl flex flex-col items-center">
-            <h1 className="about-hero-el text-[clamp(2.75rem,8vw,6.5rem)] font-black uppercase tracking-[-0.04em] text-[#121212] leading-[0.85] will-change-transform">
-              <span className="font-display">Built With</span> <br />
-              <span className="font-serif italic font-normal normal-case tracking-tight text-[#FF5C00]">
-                Intent
+      <main className="max-w-7xl mx-auto px-4 sm:px-8 md:px-16">
+        {/* ─── SECTION 1: HERO & STUDIO IDENTITY ─── */}
+        <section className="py-12 sm:py-20 md:py-24 flex flex-col items-start gap-4 sm:gap-6">
+          <div className="max-w-4xl">
+            <p className="about-hero-el text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-[#FF5C00] mb-3 sm:mb-4">
+              About The Studio
+            </p>
+            <h1 className="about-hero-el text-[clamp(2.75rem,8vw,6.5rem)] font-black uppercase tracking-[-0.04em] text-[#121212] leading-[0.85] mb-4 sm:mb-6">
+              Built With <br />
+              <span className="font-normal italic font-serif text-[#FF5C00] normal-case">
+                Intent.
               </span>
-              <span className="text-[#FF5C00] font-display">.</span>
             </h1>
-            <p className="about-hero-el mt-6 sm:mt-8 text-[clamp(1rem,2vw,1.5rem)] font-medium tracking-[-0.02em] leading-relaxed max-w-xl text-[#121212]/80 font-sans will-change-transform">
-              A branding and design studio with over 20 years of industry
-              experience. We help businesses define how they are seen,
-              remembered, and trusted.
+            <p className="about-hero-el mt-4 sm:mt-6 text-[clamp(1.15rem,2.8vw,2rem)] font-medium tracking-[-0.025em] leading-[1.35] font-sans text-[#121212]/85 max-w-2xl">
+              An art direction and graphic design studio with over 20 years of real-world craft. We help businesses define how they are seen, remembered, and trusted.
             </p>
           </div>
         </section>
 
-        {/* WHO WE ARE */}
-        <section className="philosophy-section py-12 sm:py-20 md:py-24 border-t border-black/10 flex flex-col items-center text-center">
-          <div className="max-w-4xl flex flex-col items-center">
-            <h2 className="philosophy-el text-[clamp(2rem,4.5vw,4rem)] font-black tracking-tighter mb-6 sm:mb-10 font-display uppercase flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4">
-              <span>Who</span>
-              <span className="italic font-serif normal-case font-normal text-[#FF5C00] tracking-normal pt-1">
-                We Are
-              </span>
-            </h2>
-            <div className="space-y-4 sm:space-y-6 flex flex-col items-center">
-              <p className="philosophy-el text-[clamp(1rem,2vw,1.75rem)] leading-relaxed text-[#121212] font-medium tracking-tight">
-                Our work is rooted in{" "}
-                <span className="text-[#FF5C00]">strategy</span>, not trends.
-                Every identity, visual system, and piece of communication we
-                create is built with{" "}
-                <span className="text-[#FF5C00]">purpose</span> — designed to be
-                clear, consistent, and scalable across every touchpoint.
-              </p>
-              <p className="philosophy-el text-[clamp(1rem,2vw,1.75rem)] leading-relaxed text-[#121212] font-medium tracking-tight">
-                With two decades of real-world experience, we understand what
-                works, what lasts, and what delivers{" "}
-                <span className="text-[#FF5C00]">value</span>. We don't decorate
-                brands. We build them with{" "}
-                <span className="font-serif italic font-normal text-[#FF5C00]">
-                  intent
-                </span>
-                .
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* ─── SECTION 2: 2×2 SIGNATURE CARDS GRID ─── */}
+        <section className="pb-16 sm:pb-32">
+          <div className="about-cards-grid grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-8 lg:gap-10">
+            {PILLARS.map((pillar, i) => {
+              const isExpanded = expandedCard === i;
 
-        {/* WHAT MAKES US DIFFERENT */}
-        <section className="values-section py-12 sm:py-20 md:py-24 border-t border-black/10 flex flex-col items-center">
-          <h2 className="philosophy-el text-[clamp(2rem,4.5vw,4rem)] font-black tracking-tighter mb-8 sm:mb-12 text-center font-display uppercase flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4">
-            <span>What Makes Us</span>
-            <span className="font-serif italic font-normal normal-case tracking-tight text-[#FF5C00] pt-1">
-              Different.
-            </span>
-          </h2>
-          <div className="flex flex-col w-full max-w-5xl text-left border-t border-black/10">
-            {[
-              "Brand-focused creative thinking",
-              "Strategy before aesthetics",
-              "Clarity over clutter",
-              "Consistency builds trust",
-              "Customized solutions for every business",
-              "Consistent quality and timely delivery",
-              "Cost-effective solutions without compromise",
-            ].map((value, i) => (
-              <div
-                key={i}
-                className="value-card group border-b border-black/10 py-3.5 sm:py-5 flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-6 hover:bg-black/5 transition-colors px-3 sm:px-6"
-              >
-                <span className="font-serif italic text-lg sm:text-2xl font-normal text-[#FF5C00] shrink-0">
-                  {(i + 1).toString().padStart(2, "0")}
-                </span>
-                <h3 className="text-base sm:text-xl lg:text-2xl font-black uppercase tracking-tight font-display">
-                  {value}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* DESIGN SERVICES */}
-        <section className="service-section py-12 sm:py-20 md:py-24 border-t border-black/10 flex flex-col items-center text-center">
-          <div className="max-w-4xl flex flex-col items-center w-full">
-            <h2 className="service-el text-[clamp(2rem,4.5vw,4rem)] font-black tracking-tighter mb-4 sm:mb-8 font-display uppercase flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4">
-              <span>Our</span>
-              <span className="italic font-serif normal-case font-normal text-[#FF5C00] tracking-normal pt-1">
-                Design Services
-              </span>
-            </h2>
-            <p className="service-el text-[clamp(1.05rem,2vw,1.75rem)] leading-relaxed text-[#121212] font-medium tracking-tight mb-8 sm:mb-14">
-              Ideas turned into something you can{" "}
-              <span className="font-serif italic font-normal text-[#FF5C00]">
-                see
-              </span>
-              .
-            </p>
-
-            <div className="w-full flex flex-col border-t border-black/10 mb-10 sm:mb-20 text-left">
-              {[
-                {
-                  name: "Logo Design & Brand Identity",
-                  link: "/portfolio/logos",
-                },
-                { name: "Corporate Branding", link: null },
-                {
-                  name: "Brochures & Catalogues",
-                  link: "/portfolio/brochure-designs",
-                },
-                {
-                  name: "Packaging Design",
-                  link: "/portfolio/packaging-prints",
-                },
-                { name: "Social Media & Digital Creatives", link: null },
-                { name: "Advertising & Marketing Collaterals", link: null },
-              ].map((service, i) => (
+              return (
                 <div
-                  key={i}
-                  onClick={() => service.link && navigate(service.link)}
-                  className={`service-el group flex items-center justify-between py-4 sm:py-7 border-b border-black/10 hover:bg-[#121212] hover:text-white transition-colors px-3 sm:px-6 ${service.link ? "cursor-pointer" : "cursor-default"}`}
+                  key={pillar.id}
+                  className="about-card-item group flex flex-col rounded-2xl sm:rounded-[2rem] bg-[#f0eee3] border border-[#121212]/5 shadow-sm sm:hover:shadow-xl transition-all duration-500 sm:hover:-translate-y-2 relative overflow-hidden"
                 >
-                  <span className="text-base sm:text-2xl md:text-3xl font-bold tracking-tight font-sans">
-                    {service.name}
-                  </span>
-                  {service.link ? (
-                    <span className="flex items-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity text-[#FF5C00] uppercase font-bold tracking-widest">
-                      View Work{" "}
-                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  ) : (
-                    <span className="font-mono text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity text-[#FF5C00]">
-                      SERVICE
-                    </span>
-                  )}
+                  {/* Signature Expanding Circle Hover Layer (desktop only) */}
+                  <div className="absolute inset-0 bg-[#ee5b05] [clip-path:circle(0%_at_100%_0%)] group-hover:[clip-path:circle(150%_at_100%_0%)] transition-[clip-path] duration-700 ease-out group-hover:duration-[2000ms] group-hover:ease-in-out z-0 pointer-events-none hidden sm:block"></div>
+
+                  {/* ─── Mobile: Tap-to-expand compact card ─── */}
+                  <div className="sm:hidden relative z-10">
+                    <button
+                      type="button"
+                      onClick={() => setExpandedCard(isExpanded ? null : i)}
+                      className="w-full flex items-center justify-between px-5 py-4 cursor-pointer text-left"
+                    >
+                      <h2 className="text-base font-bold tracking-tight text-[#121212] leading-tight">
+                        {pillar.title}
+                      </h2>
+                      <ChevronDown
+                        className={`w-5 h-5 text-[#121212]/50 shrink-0 ml-3 transition-transform duration-400 ease-out ${
+                          isExpanded ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    <div
+                      className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      style={{
+                        maxHeight: isExpanded ? "500px" : "0px",
+                        opacity: isExpanded ? 1 : 0,
+                      }}
+                    >
+                      <div className="px-5 pb-5 pt-0">
+                        <p className="text-sm text-[#121212]/75 leading-relaxed font-medium">
+                          {pillar.description}
+                        </p>
+
+                        <div className="mt-4 flex flex-wrap gap-1.5">
+                          {pillar.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[9px] font-mono font-bold uppercase tracking-[0.12em] px-2.5 py-1 border border-[#121212]/12 text-[#121212]/65 rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="mt-5">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (pillar.actionPath.startsWith("#")) {
+                                smoothScrollToId(pillar.actionPath.replace("#", ""));
+                              } else if (pillar.actionPath === "/contact") {
+                                smoothScrollToId("contact");
+                              } else {
+                                navigate(pillar.actionPath);
+                              }
+                            }}
+                            className="inline-flex items-center gap-3 px-5 py-3 rounded-xl font-mono text-[10px] font-bold uppercase tracking-[0.15em] bg-[#121212] text-white cursor-pointer shadow-sm active:scale-95 transition-transform"
+                          >
+                            <span>{pillar.actionText}</span>
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ─── Desktop: Full card (unchanged) ─── */}
+                  <div className="hidden sm:flex relative z-10 flex-col h-full pointer-events-none p-10 md:p-12">
+                    <h2 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tight text-[#121212] leading-[1.1] group-hover:text-white transition-colors duration-500 group-hover:duration-1000">
+                      {pillar.title}
+                    </h2>
+                    <p className="mt-4 text-[15px] text-[#121212]/80 group-hover:text-white/90 transition-colors duration-500 group-hover:duration-1000 leading-relaxed max-w-md font-medium">
+                      {pillar.description}
+                    </p>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {pillar.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] px-3 py-1.5 border border-[#121212]/15 text-[#121212]/75 rounded-full group-hover:border-white/30 group-hover:text-white transition-colors duration-500 group-hover:duration-1000"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="mt-8 pt-4 mt-auto">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (pillar.actionPath.startsWith("#")) {
+                            smoothScrollToId(pillar.actionPath.replace("#", ""));
+                          } else if (pillar.actionPath === "/contact") {
+                            smoothScrollToId("contact");
+                          } else {
+                            navigate(pillar.actionPath);
+                          }
+                        }}
+                        className="pointer-events-auto group/btn inline-flex items-center justify-between gap-4 px-6 py-3.5 rounded-xl font-mono text-[11px] font-bold uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer bg-[#121212] text-white hover:bg-[#FF5C00] hover:scale-[1.02] shadow-sm hover:shadow-lg group-hover:bg-white group-hover:text-[#121212] group-hover:hover:bg-[#121212] group-hover:hover:text-white"
+                      >
+                        <span>{pillar.actionText}</span>
+                        <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            <p className="service-el text-[clamp(1.4rem,3.5vw,3.5rem)] font-bold uppercase tracking-tight text-[#121212] leading-[1.1] font-display max-w-4xl mx-auto">
-              “We don't just design — <br className="hidden sm:block" />
-              we create{" "}
-              <span className="font-serif italic font-normal normal-case tracking-tight text-[#FF5C00]">
-                brand experiences
-              </span>
-              .”
-            </p>
-          </div>
-        </section>
-
-        {/* PRINTING SERVICES */}
-        <section className="service-section py-12 sm:py-20 md:py-24 border-t border-black/10 flex flex-col items-center text-center">
-          <div className="max-w-4xl flex flex-col items-center w-full">
-            <h2 className="service-el text-[clamp(2rem,4.5vw,4rem)] font-black tracking-tighter mb-4 sm:mb-8 font-display uppercase flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4">
-              <span>Our</span>
-              <span className="italic font-serif normal-case font-normal text-[#FF5C00] tracking-normal pt-1">
-                Printing Services
-              </span>
-            </h2>
-            <p className="service-el text-[clamp(1rem,2vw,1.75rem)] leading-relaxed text-[#121212] font-medium tracking-tight mb-8 sm:mb-14 max-w-2xl">
-              Design made to live{" "}
-              <span className="font-serif italic font-normal text-[#FF5C00]">
-                beyond the screen
-              </span>
-              . <br />
-              <br />
-              From short runs to bulk production, our printing solutions deliver
-              sharp colours, clean finishes, and professional results every
-              time. We believe print quality should reflect the value of the
-              brand behind it.
-            </p>
-
-            <div className="w-full flex flex-col border-t border-black/10 mb-10 sm:mb-20 text-left">
-              {[
-                { name: "Offset & Digital Printing", link: null },
-                {
-                  name: "Brochures & Catalogues",
-                  link: "/portfolio/brochure-designs",
-                },
-                { name: "Sticker Labels", link: null },
-                {
-                  name: "Packaging Boxes & Pouches",
-                  link: "/portfolio/packaging-prints",
-                },
-                { name: "Large Format & Promotional Prints", link: null },
-              ].map((service, i) => (
-                <div
-                  key={i}
-                  onClick={() => service.link && navigate(service.link)}
-                  className={`service-el group flex items-center justify-between py-4 sm:py-7 border-b border-black/10 hover:bg-[#FF5C00] hover:text-white transition-colors px-3 sm:px-6 ${service.link ? "cursor-pointer" : "cursor-default"}`}
-                >
-                  <span className="text-base sm:text-2xl md:text-3xl font-bold tracking-tight font-sans">
-                    {service.name}
-                  </span>
-                  {service.link ? (
-                    <span className="flex items-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity text-[#121212] uppercase font-bold tracking-widest">
-                      View Work{" "}
-                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  ) : (
-                    <span className="font-mono text-[10px] sm:text-xs opacity-0 group-hover:opacity-100 transition-opacity text-[#121212]">
-                      SERVICE
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <p className="service-el text-[clamp(1.4rem,3.5vw,3.5rem)] font-bold uppercase tracking-tight text-[#121212] leading-[1.1] font-display max-w-4xl mx-auto">
-              “Premium printing <br className="hidden sm:block" />
-              that makes an{" "}
-              <span className="font-serif italic font-normal normal-case tracking-tight text-[#FF5C00]">
-                impact
-              </span>
-              .”
-            </p>
-          </div>
-        </section>
-
-        {/* PIXEL HOOK */}
-        <section className="pixel-hook-section py-14 sm:py-24 flex flex-col items-center text-center px-4 w-full overflow-hidden">
-          <div className="w-full flex flex-col items-center">
-            <h2 className="text-[clamp(3rem,10vw,12rem)] font-black tracking-tighter leading-[0.85] font-sans flex flex-col items-center">
-              <span className="pixel-hook-el text-[#121212]/40 tracking-[-0.04em] block will-change-transform">
-                Make every
-              </span>
-              <span className="pixel-hook-el text-[#121212] tracking-[-0.05em] block will-change-transform">
-                pixel pay for
-              </span>
-              <span className="pixel-hook-el text-[#121212] tracking-[-0.05em] block will-change-transform">
-                itself!
-              </span>
-            </h2>
+              );
+            })}
           </div>
         </section>
       </main>
 
-      {/* FOOTER CTA */}
-      <div className="mt-8 sm:mt-12 bg-transparent relative z-10 rounded-t-[2.5rem] sm:rounded-t-[4rem] border-t border-black/10">
-        <ContactUs />
-        <Footer
-          onScrollTop={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          onBookCall={() => smoothScrollToId("contact")}
-        />
-      </div>
+      {/* ─── CONTACT + FOOTER ─── */}
+      <ContactUs />
+      <Footer
+        onScrollTop={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        onBookCall={() => smoothScrollToId("contact")}
+      />
     </div>
   );
 };

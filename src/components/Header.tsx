@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { smoothScrollToId } from "../lib/scroll";
@@ -14,6 +15,9 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = React.useRef(0);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const isNotHome = location.pathname !== "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,18 +50,18 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
     });
   }, []);
 
-  const handleHomeScroll = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    id: string,
-  ) => {
-    if (location.pathname === "/") {
-      e.preventDefault();
-      smoothScrollToId(id);
+  const handleBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate("/");
     }
   };
 
   return (
-    <header
+    <>
+      <header
       className={`fixed top-0 inset-x-0 z-[60] flex items-center justify-between px-4 sm:px-8 md:px-12 transition-all duration-300 ${
         isScrolled
           ? "py-2.5 sm:py-3.5 bg-white/85 backdrop-blur-md shadow-sm border-b border-black/5"
@@ -68,16 +72,18 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
           : "translate-y-0 opacity-100 pointer-events-auto"
       }`}
     >
-      <Link
-        to="/"
-        className="nav-item flex items-center gap-2 relative z-10 shrink-0"
-      >
-        <img
-          src={LOGO_URL}
-          alt="Sharp Design Logo"
-          className="h-6 sm:h-8 w-auto object-contain"
-        />
-      </Link>
+      <div className="flex items-center gap-3 sm:gap-4">
+        <Link
+          to="/"
+          className="nav-item flex items-center gap-2 relative z-10 shrink-0"
+        >
+          <img
+            src={LOGO_URL}
+            alt="Sharp Design Logo"
+            className="h-6 sm:h-8 w-auto object-contain"
+          />
+        </Link>
+      </div>
 
       <button
         onClick={onMenuOpen}
@@ -90,6 +96,23 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
           MENU
         </span>
       </button>
-    </header>
+      </header>
+
+      {/* Floating Back Button (Below Header) */}
+      {isNotHome && (
+        <button
+          onClick={handleBack}
+          aria-label="Go back to previous page"
+          className={`fixed left-4 sm:left-8 md:left-12 z-[55] nav-item group flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-black/10 hover:bg-[#121212] hover:text-white text-[#121212] transition-all duration-300 cursor-pointer text-xs font-mono font-bold uppercase tracking-wider focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FF5C00] active:scale-95 ${
+            isScrolled ? "top-20 sm:top-24" : "top-24 sm:top-28"
+          } ${
+            isHidden ? "opacity-0 pointer-events-none translate-y-[-10px]" : "opacity-100 pointer-events-auto translate-y-0"
+          }`}
+        >
+          <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
+          <span>Back</span>
+        </button>
+      )}
+    </>
   );
 };

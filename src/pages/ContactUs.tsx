@@ -1,177 +1,242 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import {
+  ArrowUpRight,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Copy,
+  Check,
+  ExternalLink,
+  MessageCircle,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const GOOGLE_MAPS_LINK =
+  "https://www.google.com/maps?cid=18118991527458197835&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=IN&source=embed";
+const GOOGLE_MAPS_EMBED =
+  "https://maps.google.com/maps?cid=18118991527458197835&hl=en&gl=IN&output=embed";
+
 export const ContactUs: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   useGSAP(
     () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
+          start: "top 85%",
         },
       });
 
-      tl.from(".contact-title", {
-        y: 40,
+      tl.from(".contact-compact-el", {
+        y: 25,
         opacity: 0,
-        duration: 1,
+        stagger: 0.06,
+        duration: 0.75,
         ease: "power3.out",
-      }).from(
-        ".form-element",
-        {
-          y: 20,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "-=0.5",
-      );
+        clearProps: "all",
+      });
     },
     { scope: containerRef },
   );
 
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText("hiren@sharpdesign.co.in");
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2200);
+  };
+
   return (
-    <div
+    <section
       id="contact"
       ref={containerRef}
-      className="py-14 sm:py-20 md:min-h-screen md:py-0 md:pt-24 md:pb-12 flex items-center justify-center px-5 sm:px-6 text-[#121212]"
+      className="relative w-full py-8 sm:py-12 md:py-16 px-4 sm:px-8 md:px-12 text-[#121212] overflow-hidden"
     >
-      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
-        <div>
-          <h1 className="contact-title text-[clamp(2rem,5vw,4rem)] leading-[1] font-medium tracking-tight text-[#121212] mb-4 sm:mb-6">
-            Let's build <br />
-            <span className="font-normal italic font-serif text-[#FF5C00]">
-              something.
-            </span>
-          </h1>
-          <p className="contact-title text-[#121212]/60 text-base sm:text-lg max-w-md">
-            Whether you have a fully formed project or just an idea, we'd love
-            to collaborate with you.
-          </p>
-          <div className="pt-6 sm:pt-12">
-            <a
-              href="https://wa.me/919227953032?text=Hello!%20Got%20your%20reference%20from%20Sharp%20Design%20Website..."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="form-element group inline-flex items-center gap-4 sm:gap-6 transition-colors"
-            >
-              <span className="text-xl sm:text-2xl md:text-3xl font-mono font-bold uppercase tracking-widest text-[#121212] group-hover:text-[#FF5C00] transition-colors">
-                Contact Us
-              </span>
-              <span className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[#FF5C00] group-hover:bg-[#25D366] text-white flex items-center justify-center overflow-hidden relative shrink-0 shadow-lg transition-colors duration-500">
-                {/* Arrow — visible by default, fades out on hover */}
-                <svg className="w-6 h-6 sm:w-8 sm:h-8 absolute transition-all duration-400 ease-out opacity-100 group-hover:opacity-0 group-hover:scale-75 group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-                {/* WhatsApp — hidden by default, fades in on hover */}
-                <svg className="w-7 h-7 sm:w-9 sm:h-9 absolute transition-all duration-400 ease-out opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-              </span>
-            </a>
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto">
+        {/* Main Compact Unified Studio Card */}
+        <div className="contact-compact-el grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
 
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-8 md:mt-0">
-          {[
-            {
-              name: "WhatsApp",
-              href: "https://wa.me/919227953032?text=Hello!%20Got%20your%20reference%20from%20Sharp%20Design%20Website...",
-              icon: (
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
+          {/* Left Column: Heading & Contact Channels */}
+          <div className="lg:col-span-6 flex flex-col justify-between gap-6">
+            <div>
+              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-black uppercase tracking-[-0.03em] text-[#121212] font-sans leading-[0.95]">
+                Contact{" "}
+                <span className="font-normal italic font-serif text-[#FF5C00] normal-case">
+                  Us.
+                </span>
+              </h2>
+
+
+            </div>
+
+            {/* Direct Contact Channels List */}
+            <div className="flex flex-col gap-3">
+              {/* Row 1: WhatsApp & Phone */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-[#FF5C00]/10 flex items-center justify-center text-[#FF5C00] shrink-0">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#121212]/50 block font-medium">
+                      Mobile & Direct
+                    </span>
+                    <a
+                      href="tel:+919227953032"
+                      aria-label="Call Mobile: +91 92279 53032"
+                      className="text-base sm:text-xl font-bold text-[#121212] hover:text-[#FF5C00] transition-colors font-sans tracking-tight"
+                    >
+                      +91 92279 53032
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 pl-12 sm:pl-0">
+                  <a
+                    href="tel:+917940096529"
+                    aria-label="Call Studio Desk: +91 79 40096529"
+                    className="text-l font-mono text-[#121212]/70 hover:text-[#FF5C00] transition-colors"
+                  >
+                    <span className="font-bold">+91 7940096529</span>
+                  </a>
+                  <a
+                    href="https://wa.me/919227953032?text=Hello!%20Got%20your%20reference%20from%20Sharp%20Design%20Website..."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chat on WhatsApp: +91 92279 53032"
+                    className="w-7 h-7 rounded-md bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white flex items-center justify-center transition-all shrink-0"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Row 2: Studio Email */}
+              <div className="flex items-center justify-between gap-3 py-2">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-9 h-9 rounded-lg bg-[#FF5C00]/10 flex items-center justify-center text-[#FF5C00] shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#121212]/50 block font-medium">
+                      Studio Email
+                    </span>
+                    <a
+                      href="mailto:hiren@sharpdesign.co.in"
+                      className="text-l sm:text-xl font-bold text-[#121212] hover:text-[#FF5C00] transition-colors font-sans tracking-tight truncate block"
+                    >
+                      hiren@sharpdesign.co.in
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    aria-label="Copy studio email address"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-black/5 hover:bg-[#FF5C00]/10 font-mono text-[10px] font-bold uppercase tracking-wider text-[#121212]/70 hover:text-[#FF5C00] transition-all cursor-pointer"
+                  >
+                    {copiedEmail ? (
+                      <>
+                        <Check className="w-3 h-3 text-green-600" />
+                        <span className="text-green-600">Copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3 h-3" />
+                        <span>Copy</span>
+                      </>
+                    )}
+                  </button>
+
+                  <a
+                    href="mailto:hiren@sharpdesign.co.in"
+                    aria-label="Compose email"
+                    className="w-7 h-7 rounded-md bg-black/5 hover:bg-[#FF5C00] hover:text-white text-[#121212] flex items-center justify-center transition-all"
+                  >
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Row 3: Compact Address */}
+              <div className="py-2 flex items-start gap-3">
+                <div className="w-9 h-9 rounded-lg bg-[#FF5C00]/10 flex items-center justify-center text-[#FF5C00] shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div className="flex-1 text-xs sm:text-sm font-sans text-[#121212]/80 leading-snug">
+                  <p className="font-bold text-[#121212]">Sharp Design Studio</p>
+                  <p className="text-l text-[#121212]/65 mt-0.5">
+                    20, 1st Floor, APM Mall, Opp. Sun N Step Club, Sattadhar Cross Road, Ghatlodia, Ahmedabad - 380 061
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Google Maps & Direct Action */}
+          <div className="lg:col-span-6 flex flex-col justify-between gap-3 min-h-[260px] sm:min-h-[300px]">
+            {/* Map Frame */}
+            <div className="w-full h-full min-h-[220px] sm:min-h-[260px] rounded-xl overflow-hidden border border-black/10 relative shadow-inner bg-[#f0ede6]">
+              <iframe
+                title="Sharp Design Studio Location on Google Maps"
+                src={GOOGLE_MAPS_EMBED}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
+              <div className="absolute top-2.5 right-2.5 pointer-events-none">
+                <span className="px-2.5 py-1 rounded bg-black/85 text-white font-mono text-[9px] font-bold uppercase tracking-wider backdrop-blur-xs shadow-xs">
+                  Studio Location
+                </span>
+              </div>
+            </div>
+
+            {/* Quick Actions Under Map */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <div className="flex items-center gap-1.5 text-xs font-mono text-[#121212]/60">
+                <Clock className="w-3.5 h-3.5 text-[#FF5C00]" />
+                <span>Mon–Sat · 10:00 AM – 7:30 PM IST</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={GOOGLE_MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#121212] text-white hover:bg-[#FF5C00] font-mono text-[11px] font-bold uppercase tracking-wider transition-all shadow-xs cursor-pointer"
                 >
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-              ),
-              color:
-                "hover:bg-[#25D366] hover:text-white hover:border-[#25D366]",
-            },
-            {
-              name: "Instagram",
-              href: "https://www.instagram.com/sharpdesign/",
-              icon: (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  <span>Open in Maps</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+
+                <a
+                  href="https://wa.me/919227953032?text=Hello!%20I%20would%20like%20to%20schedule%20a%20visit%20to%20your%20studio..."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-black/5 hover:bg-black/10 text-[#121212] font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer"
                 >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-              ),
-              color:
-                "hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C]",
-            },
-            {
-              name: "LinkedIn",
-              href: "https://in.linkedin.com/company/sharpdesign3",
-              icon: (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              ),
-              color:
-                "hover:bg-[#0077B5] hover:text-white hover:border-[#0077B5]",
-            },
-            {
-              name: "X",
-              href: "https://x.com/sharp_design",
-              icon: (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-                  <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-                </svg>
-              ),
-              color: "hover:bg-black hover:text-white hover:border-black",
-            },
-          ].map((social) => (
-            <a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.name}
-              className={`form-element flex items-center justify-center w-14 h-14 rounded-full border border-black/10 text-[#121212] transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-lg ${social.color}`}
-            >
-              {social.icon}
-            </a>
-          ))}
+                  <span>Schedule Visit</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };

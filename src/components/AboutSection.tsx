@@ -31,7 +31,7 @@ export const AboutSection: React.FC = () => {
     <section
       id="about"
       ref={containerRef}
-      className="relative w-full py-14 sm:py-20 md:min-h-screen md:py-0 flex flex-col justify-center px-4 sm:px-8 md:px-16 bg-transparent"
+      className="relative w-full py-16 sm:py-24 md:py-32 flex flex-col justify-center px-4 sm:px-8 md:px-16 bg-transparent"
     >
       <div className="w-full max-w-7xl mx-auto flex flex-col items-start gap-5 sm:gap-8">
         {/* Big Bold Heading: About Us */}

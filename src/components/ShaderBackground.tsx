@@ -97,6 +97,9 @@ export const ShaderBackground: React.FC = () => {
 
     // Global touch and hover tracking for mobile & desktop reactivity
     const handleTouchOrPointer = (e: TouchEvent | PointerEvent | MouseEvent) => {
+      // Ignore synthetic events to prevent recursion loops
+      if (!e.isTrusted) return;
+
       let clientX = 0;
       let clientY = 0;
 
@@ -116,14 +119,14 @@ export const ShaderBackground: React.FC = () => {
       const canvas = container.querySelector("canvas");
       if (!canvas) return;
 
-      // Dispatch synthetic pointer and mouse move events to canvas
+      // Dispatch synthetic pointer and mouse move events to canvas without bubbling up
       try {
         canvas.dispatchEvent(
           new PointerEvent("pointermove", {
             clientX,
             clientY,
-            bubbles: true,
-            cancelable: true,
+            bubbles: false,
+            cancelable: false,
             pointerType: "touches" in e ? "touch" : "mouse",
           })
         );
@@ -131,8 +134,8 @@ export const ShaderBackground: React.FC = () => {
           new MouseEvent("mousemove", {
             clientX,
             clientY,
-            bubbles: true,
-            cancelable: true,
+            bubbles: false,
+            cancelable: false,
           })
         );
       } catch (_) {

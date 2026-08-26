@@ -22,6 +22,17 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   useGSAP(() => {
     if (isOpen && drawerRef.current) {
       const isMobile = window.innerWidth < 640;
@@ -56,17 +67,37 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] overflow-hidden select-none flex items-start sm:items-center justify-center sm:justify-start p-4 sm:p-7 md:p-10">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation Menu"
+      className="fixed inset-0 z-[100] overflow-hidden select-none flex items-start sm:items-center justify-center sm:justify-start p-4 sm:p-7 md:p-10"
+    >
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-black/45 backdrop-blur-[2px] cursor-pointer animate-in fade-in duration-300"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm cursor-pointer transition-opacity duration-300"
       />
 
       <div
         ref={drawerRef}
         className="relative z-20 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl h-auto min-h-[60vh] max-h-[90vh] sm:h-full sm:max-h-[88vh] bg-[#121212] text-white rounded-[28px] xs:rounded-[32px] sm:rounded-[40px] shadow-[0_25px_70px_rgba(0,0,0,0.6)] border border-white/10 flex flex-col justify-between p-6 xs:p-8 sm:p-10 md:p-12 overflow-y-auto no-scrollbar"
       >
-        <div className="flex flex-col gap-1 sm:gap-2 mt-4 sm:mt-8">
+        {/* Top bar with Navigation Label and Close Button */}
+        <div className="flex items-center justify-between pb-4 border-b border-white/10">
+          <span className="text-[11px] font-mono font-bold uppercase tracking-[0.25em] text-[#FF5C00]">
+            Navigation
+          </span>
+          <button
+            onClick={onClose}
+            aria-label="Close Navigation"
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF5C00] text-white flex items-center justify-center transition-colors cursor-pointer"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Menu Items */}
+        <div className="flex flex-col gap-1 sm:gap-2 my-auto py-6">
           {([
             { label: "Home", id: "hero", tip: "Back to the top", path: "/" },
             { label: "About Us", id: "about", tip: "Our story & philosophy", path: "/about" },
@@ -88,6 +119,12 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
               </span>
             </button>
           ))}
+        </div>
+
+        {/* Bottom studio mark */}
+        <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/40">
+          <span>Sharp Design Studio</span>
+          <span>EST. 2004</span>
         </div>
       </div>
     </div>,
