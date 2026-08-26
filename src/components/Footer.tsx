@@ -115,14 +115,6 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTop, onBookCall }) => {
         { text: "Works", url: "/portfolio" },
       ],
     },
-    {
-      links: [
-        { text: "Twitter / X", url: "https://x.com/sharp_design" },
-        { text: "LinkedIn", url: "https://in.linkedin.com/company/sharpdesign3" },
-        { text: "Instagram", url: "https://www.instagram.com/sharpdesign/" },
-        { text: "WhatsApp", url: "https://wa.me/919227953032" },
-      ],
-    },
   ];
 
   return (
@@ -146,13 +138,14 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTop, onBookCall }) => {
               />
             </motion.div>
 
-            <motion.p
+            <motion.div
               variants={itemVariants}
-              className="text-[clamp(1.1rem,2.5vw,1.6rem)] font-medium leading-tight tracking-tight text-[#121212]/70 md:text-right md:max-w-sm italic font-serif"
+              className="text-[clamp(1rem,2vw,1.35rem)] font-medium leading-snug tracking-tight text-[#121212]/80 md:text-right font-serif italic flex flex-col gap-0.5"
             >
-              Make every pixel <br className="hidden sm:block" />
-              <span className="text-[#FF5C00]">pay for itself.</span>
-            </motion.p>
+              <p>Strategy before aesthetics.</p>
+              <p className="text-[#FF5C00]">Clarity over clutter.</p>
+              <p>Consistency builds trust.</p>
+            </motion.div>
           </div>
 
           <motion.div
@@ -196,10 +189,10 @@ export const Footer: React.FC<FooterProps> = ({ onScrollTop, onBookCall }) => {
               </div>
             </motion.div>
 
-            {/* Nav Columns */}
-        <motion.div
+            {/* Nav Links */}
+            <motion.div
               variants={containerVariants}
-              className="grid grid-cols-2 gap-x-12 gap-y-2 md:gap-x-20 self-start mt-4 md:mt-0"
+              className="flex flex-col gap-3 self-start mt-4 md:mt-0"
             >
               {navColumns.map((col, colIdx) => (
                 <ul key={colIdx} className="flex flex-col gap-3">

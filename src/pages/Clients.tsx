@@ -8,10 +8,10 @@ export const Clients: React.FC = () => {
   return (
     <section
       id="clients"
-      className="relative w-full py-12 sm:py-16 md:min-h-screen md:py-0 md:pt-20 md:pb-16 flex flex-col justify-center md:justify-between text-[#121212] overflow-hidden gap-6 md:gap-0"
+      className="relative w-full py-12 sm:py-16 md:min-h-screen md:py-0 md:pt-20 md:pb-16 flex flex-col justify-center md:justify-between text-[#121212] overflow-hidden gap-6 md:gap-0 px-4 sm:px-8 md:px-16"
     >
       {/* Top Header */}
-      <div className="w-full max-w-7xl mx-auto px-5 sm:px-12">
+      <div className="w-full max-w-7xl mx-auto">
         <h1 className="text-[clamp(2rem,5.5vw,5rem)] leading-[0.95] font-medium tracking-tight flex flex-wrap gap-x-3 sm:gap-x-4">
           <span className="block">Trusted by</span>
           <span className="block font-normal italic font-serif text-[#FF5C00]">
