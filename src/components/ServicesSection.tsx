@@ -281,71 +281,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         </p>
       </div>
 
-      {/* ─── MOBILE: Compact Accordion Cards ─── */}
-      <div className="max-w-7xl mx-auto md:hidden flex flex-col gap-2.5">
-        {[
-          { service: service1_Brochure, label: "Brochure Design", mono: "PRINT / EDITORIAL / BRANDING" },
-          { service: service3_Logo, label: "Logo Design", mono: "IDENTITY / TYPOGRAPHY / MARKS" },
-          { service: service2_Packaging, label: "Packaging Design", mono: "3D STRUCTURAL / RETAIL / BESPOKE" },
-          { service: service6_GiftCover, label: "Gift Cover Design", mono: "LUXURY / FOIL STAMPING / PREMIUM" },
-          { service: service4_Booklet, label: "Booklet Design", mono: "LAYOUT / BINDING / MULTI-PAGE" },
-          { service: service5_Stationery, label: "Stationery Printing", mono: "BUSINESS CARDS / LETTERHEADS / CORPORATE SETS" },
-        ].map((item, i) => {
-          const isExpanded = expandedCard === i;
-          return (
-            <div
-              key={item.service.id}
-              className="bg-[#121212] rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
-            >
-              <button
-                type="button"
-                onClick={() => setExpandedCard(isExpanded ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 cursor-pointer text-left"
-              >
-                <h3 className="text-base font-bold tracking-tight text-white leading-tight">
-                  {item.label}
-                </h3>
-                <ChevronDown
-                  className={`w-5 h-5 text-white/40 shrink-0 ml-3 transition-transform duration-400 ease-out ${
-                    isExpanded ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
 
-              <div
-                className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                style={{
-                  maxHeight: isExpanded ? "400px" : "0px",
-                  opacity: isExpanded ? 1 : 0,
-                }}
-              >
-                <div className="px-5 pb-5">
-                  <p className="text-sm text-white/60 leading-relaxed font-medium mb-3">
-                    {item.service.tagline}
-                  </p>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/30 mb-4">
-                    {item.mono}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate(`/services#${item.service.id}`);
-                    }}
-                    className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-mono text-[10px] font-bold uppercase tracking-[0.15em] bg-[#FF5C00] text-white cursor-pointer shadow-sm active:scale-95 transition-transform"
-                  >
-                    <span>View Details</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* ─── DESKTOP: Full Bento Grid ─── */}
-      <div className="max-w-7xl mx-auto hidden md:grid grid-cols-12 gap-3.5 sm:gap-6 md:gap-8 auto-rows-[minmax(180px,_auto)]">
+      {/* ─── ALL SCREENS: Full Bento Grid ─── */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-6 md:gap-8 auto-rows-[minmax(180px,_auto)]">
         <article
           onClick={() => navigate(`/services#${service1_Brochure.id}`)}
           onMouseEnter={handleMouseEnter}
