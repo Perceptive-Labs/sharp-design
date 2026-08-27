@@ -368,7 +368,7 @@ export const EditorialSidebar: React.FC<EditorialSidebarProps> = ({
             }}
             className="nav-tile group relative flex items-center justify-center w-12 h-12 rounded-2xl bg-transparent overflow-visible cursor-pointer border border-transparent transition-colors hover:bg-black/5"
           >
-            <div className="icon-wrap shrink-0 flex items-center justify-center text-[#121212] transition-colors rounded-2xl p-3 bg-white/40 shadow-sm backdrop-blur-md border border-white/50 group-hover:bg-white group-hover:shadow-md pointer-events-none">
+            <div className="icon-wrap shrink-0 flex items-center justify-center text-[#121212] transition-colors rounded-2xl p-3 bg-[#F5EFEB] shadow-sm border border-[#121212]/15 group-hover:bg-white group-hover:border-[#121212]/5 group-hover:shadow-md pointer-events-none">
               {renderIcon(item.id)}
             </div>
 
@@ -397,7 +397,7 @@ export const EditorialSidebar: React.FC<EditorialSidebarProps> = ({
             }}
             className="nav-tile group relative flex items-center justify-center w-12 h-12 rounded-2xl bg-transparent overflow-visible cursor-pointer border border-transparent transition-colors hover:bg-black/5"
           >
-            <div className="icon-wrap shrink-0 flex items-center justify-center text-[#121212] transition-colors rounded-2xl p-3 bg-white/40 shadow-sm backdrop-blur-md border border-white/50 group-hover:bg-white group-hover:shadow-md pointer-events-none">
+            <div className="icon-wrap shrink-0 flex items-center justify-center text-[#121212] transition-colors rounded-2xl p-3 bg-[#F5EFEB] shadow-sm border border-[#121212]/15 group-hover:bg-white group-hover:border-[#121212]/5 group-hover:shadow-md pointer-events-none">
               {renderIcon(menuLink.id)}
             </div>
           </button>

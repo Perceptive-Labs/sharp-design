@@ -169,14 +169,14 @@ export const PortfolioCardSection: React.FC<PortfolioCardSectionProps> = () => {
       className="relative w-full flex flex-col items-center pt-16 pb-20 sm:pt-24 sm:pb-32 px-4 sm:px-6 md:px-8 overflow-hidden"
     >
       {/* Integrated Section Header */}
-      <div className="portfolio-header-el text-center max-w-2xl mx-auto px-2 mb-12 sm:mb-16 md:mb-20">
-        <h2 className="text-[clamp(1.85rem,4.5vw,3.5rem)] font-black uppercase tracking-[-0.035em] text-[#121212] font-sans leading-tight flex flex-wrap justify-center gap-x-2 sm:gap-x-3">
+      <div className="portfolio-header-el text-center max-w-4xl mx-auto px-2 mb-12 sm:mb-16 md:mb-20">
+        <h2 className="text-[clamp(2rem,5vw,4.5rem)] font-black uppercase tracking-[-0.04em] text-[#121212] font-sans leading-none flex flex-wrap justify-center gap-x-2 sm:gap-x-3">
           <span>Selected</span>
           <span className="font-normal italic font-serif text-[#FF5C00] normal-case">
             Portfolios.
           </span>
         </h2>
-        <p className="mt-2.5 sm:mt-4 text-sm sm:text-base md:text-lg font-sans text-[#121212]/75 leading-relaxed font-normal max-w-lg mx-auto">
+        <p className="mt-4 sm:mt-6 text-[clamp(1.2rem,3.5vw,2.5rem)] font-medium tracking-[-0.025em] leading-[1.3] font-sans text-[#121212] max-w-4xl mx-auto">
           A curated showcase of our fine-craft print runs, identity systems, and tactile editions.
         </p>
       </div>

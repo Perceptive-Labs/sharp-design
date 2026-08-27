@@ -62,40 +62,37 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
   return (
     <>
       <header
-      className={`fixed top-0 inset-x-0 z-[60] flex items-center justify-between px-4 sm:px-8 md:px-12 transition-all duration-300 ${
-        isScrolled
-          ? "py-2.5 sm:py-3.5 bg-white/85 backdrop-blur-md shadow-sm border-b border-black/5"
-          : "py-4 sm:py-6 bg-transparent"
-      } ${
-        isHidden
-          ? "lg:-translate-y-full lg:opacity-0 lg:pointer-events-none translate-y-0 opacity-100 pointer-events-auto"
-          : "translate-y-0 opacity-100 pointer-events-auto"
-      }`}
-    >
-      <div className="flex items-center gap-3 sm:gap-4">
-        <Link
-          to="/"
-          className="nav-item flex items-center gap-2 relative z-10 shrink-0"
-        >
-          <img
-            src={LOGO_URL}
-            alt="Sharp Design Logo"
-            className="h-6 sm:h-8 w-auto object-contain"
-          />
-        </Link>
-      </div>
-
-      <button
-        onClick={onMenuOpen}
-        aria-label="Open menu"
-        className={`nav-item group relative flex shrink-0 items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-black text-white hover:bg-[#FF5C00] shadow-md transition-all duration-300 cursor-pointer pointer-events-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C00] active:scale-95 ${
-          location.pathname === "/" ? "lg:hidden" : ""
-        }`}
+        className={`fixed top-0 inset-x-0 z-[60] flex items-center justify-between px-4 sm:px-8 md:px-12 transition-all duration-300 ${isScrolled
+            ? "py-2.5 sm:py-3.5 bg-white/85 backdrop-blur-md shadow-sm border-b border-black/5"
+            : "py-4 sm:py-6 bg-transparent"
+          } ${isHidden
+            ? "lg:-translate-y-full lg:opacity-0 lg:pointer-events-none translate-y-0 opacity-100 pointer-events-auto"
+            : "translate-y-0 opacity-100 pointer-events-auto"
+          }`}
       >
-        <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-widest uppercase flex items-center justify-center">
-          MENU
-        </span>
-      </button>
+        <div className="flex items-center gap-3 sm:gap-4">
+          <Link
+            to="/"
+            className="nav-item flex items-center gap-2 relative z-10 shrink-0"
+          >
+            <img
+              src={LOGO_URL}
+              alt="Sharp Design Logo"
+              className="h-6 sm:h-8 w-auto object-contain"
+            />
+          </Link>
+        </div>
+
+        <button
+          onClick={onMenuOpen}
+          aria-label="Open menu"
+          className={`nav-item group relative flex shrink-0 items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-black text-white hover:bg-[#FF5C00] shadow-md transition-all duration-300 cursor-pointer pointer-events-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5C00] active:scale-95 ${location.pathname === "/" ? "lg:hidden" : ""
+            }`}
+        >
+          <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-widest uppercase flex items-center justify-center">
+            MENU
+          </span>
+        </button>
       </header>
 
       {/* Floating Back Button (Below Header) */}
@@ -103,11 +100,9 @@ export const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => {
         <button
           onClick={handleBack}
           aria-label="Go back to previous page"
-          className={`fixed left-4 sm:left-8 md:left-12 z-[55] nav-item group flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-black/10 hover:bg-[#121212] hover:text-white text-[#121212] transition-all duration-300 cursor-pointer text-xs font-mono font-bold uppercase tracking-wider focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FF5C00] active:scale-95 ${
-            isScrolled ? "top-20 sm:top-24" : "top-24 sm:top-28"
-          } ${
-            isHidden ? "opacity-0 pointer-events-none translate-y-[-10px]" : "opacity-100 pointer-events-auto translate-y-0"
-          }`}
+          className={`fixed left-4 sm:left-8 md:left-12 z-[55] nav-item group flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-black/10 hover:bg-[#121212] hover:text-white text-[#121212] transition-all duration-300 cursor-pointer text-xs font-mono font-bold uppercase tracking-wider focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#FF5C00] active:scale-95 ${isScrolled ? "top-20 sm:top-24" : "top-24 sm:top-28"
+            } ${isHidden ? "opacity-0 pointer-events-none translate-y-[-10px]" : "opacity-100 pointer-events-auto translate-y-0"
+            }`}
         >
           <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
           <span>Back</span>
